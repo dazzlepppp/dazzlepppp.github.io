@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="前言年三十晚上边看电视边搞了下pwnable.tw上一个FSOP的题目(春晚太无聊了，唯一一个有意思的开心麻花的小品我还错过了)，当时本地写好已经可以getshell的exp，跑远程失败了，返回本地再调试的时候居然失败了">
+<meta name="description" content="刷pwnable.tw遇到的问题">
 <meta name="keywords" content="glibc，pwn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="FSOP以及glibc针对其所做的防御措施">
 <meta property="og:url" content="http://yoursite.com/2017/02/04/FSOP以及glibc针对其所做的防御措施/index.html">
 <meta property="og:site_name" content="DazzleP&#39;s Blog">
-<meta property="og:description" content="前言年三十晚上边看电视边搞了下pwnable.tw上一个FSOP的题目(春晚太无聊了，唯一一个有意思的开心麻花的小品我还错过了)，当时本地写好已经可以getshell的exp，跑远程失败了，返回本地再调试的时候居然失败了">
+<meta property="og:description" content="刷pwnable.tw遇到的问题">
 <meta property="og:image" content="https://outflux.net/exploits/glibc-FILE-vtable.png">
-<meta property="og:updated_time" content="2017-02-04T14:11:28.749Z">
+<meta property="og:updated_time" content="2017-05-04T15:30:21.256Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FSOP以及glibc针对其所做的防御措施">
-<meta name="twitter:description" content="前言年三十晚上边看电视边搞了下pwnable.tw上一个FSOP的题目(春晚太无聊了，唯一一个有意思的开心麻花的小品我还错过了)，当时本地写好已经可以getshell的exp，跑远程失败了，返回本地再调试的时候居然失败了">
+<meta name="twitter:description" content="刷pwnable.tw遇到的问题">
 <meta name="twitter:image" content="https://outflux.net/exploits/glibc-FILE-vtable.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -186,7 +186,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elf-structure/">elf-structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glibc，pwn/">glibc，pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heap/">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwm-writeup-heap-ctf/">pwm, writeup, heap, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup/">pwn ctf writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup/">pwn writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup-ctf/">pwn, writeup, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup-heap/">pwn,ctf,writeup,heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elf-structure/">elf-structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glibc，pwn/">glibc，pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heap/">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
                     </div>
                 </section>
                 
@@ -525,7 +525,7 @@ __libc_IO_vtables:001B1AD0
         <p><span>本文标题:</span><a href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/">FSOP以及glibc针对其所做的防御措施</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
         <p><span>发布时间:</span>2017-02-04, 21:40:48</p>
-        <p><span>最后更新:</span>2017-02-04, 22:11:28</p>
+        <p><span>最后更新:</span>2017-05-04, 23:30:21</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/" title="FSOP以及glibc针对其所做的防御措施">http://yoursite.com/2017/02/04/FSOP以及glibc针对其所做的防御措施/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/02/04/FSOP以及glibc针对其所做的防御措施/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>

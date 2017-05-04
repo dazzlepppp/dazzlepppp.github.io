@@ -15,17 +15,17 @@
 
 
 
-<meta name="description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑">
+<meta name="description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑    engage既然是要分析coredump文件，就要了解coredump文件的具">
 <meta name="keywords" content="linux,elf-structure,coding">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Simple Core Dump analyser">
 <meta property="og:url" content="http://yoursite.com/2016/10/24/Simple-Core-Dump-analyser/index.html">
 <meta property="og:site_name" content="DazzleP&#39;s Blog">
-<meta property="og:description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑">
-<meta property="og:updated_time" content="2017-05-04T14:29:42.155Z">
+<meta property="og:description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑    engage既然是要分析coredump文件，就要了解coredump文件的具">
+<meta property="og:updated_time" content="2017-05-04T15:34:49.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Simple Core Dump analyser">
-<meta name="twitter:description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑">
+<meta name="twitter:description" content="start起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑    engage既然是要分析coredump文件，就要了解coredump文件的具">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -184,7 +184,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elf-structure/">elf-structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glibc，pwn/">glibc，pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heap/">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwm-writeup-heap-ctf/">pwm, writeup, heap, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup/">pwn ctf writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup/">pwn writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup-ctf/">pwn, writeup, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup-heap/">pwn,ctf,writeup,heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elf-structure/">elf-structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glibc，pwn/">glibc，pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heap/">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
                     </div>
                 </section>
                 
@@ -301,7 +301,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p>起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，<br>分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址<br>题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，<br>是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑<br><a id="more"></a>  </p>
+        <h2 id="start"><a href="#start" class="headerlink" title="start"></a>start</h2><p>起因是XNUCA AI专题的一道题，题目要求编写程序，给出目标程序以及目标程序崩溃时产生的coredump文件，<br>分析出程序崩溃的原因(栈溢出或者堆溢出),以及漏洞地址<br>题目先前给出的条件中有一个运行时间的规定，规定时长2分钟，心想这时间是不是长了点，<br>是不是写个操纵gdb的程序然后用gdb来找溢出点呢？(笑   </p>
 <h2 id="engage"><a href="#engage" class="headerlink" title="engage"></a>engage</h2><p>既然是要分析coredump文件，就要了解coredump文件的具体结构<br>通过几天的学习，发现coredump文件和普通elf程序文件存在以下几个区别<br>1.没有导入表，虽然coredump完整的保留了源程序的plt和got，但无法直接得出程序调用了什么函数<br>2.多了一个NOTE段，保留了程序崩溃现场，对于我们来说最有用的就是保留下来的寄存器情况<br>3.保留了源程序崩溃时的栈以及堆的情况，这也是本程序的关键  </p>
 <p>接下来是具体分析过程了，现在可以从coredump中分析得出崩溃时的所有寄存器信息以及整个堆栈，问题就是如何从这些信息分析出程序崩溃的原因，<br>栈溢出崩溃是因为发生了栈上的越界读写，导致<code>EIP</code>被改写到了非法地址，或者<code>EBP</code>被改写，函数返回恢复栈时因为错误的EBP而导致栈被转移而发生错误<br>这两种情况的交际就是栈上的EBP肯定都被破坏,所以只要检测出程序崩溃时的EBP是否合法即可判定是否是栈溢出，(题目只给了两种情况，要么是栈溢出要么是堆溢出)  </p>
 <p>接下来就是分析溢出点了，溢出点利用栈上的返回地址回溯即可找到崩溃地址，结合源程序的.text段就可以分析出崩溃地址<br>对于堆溢出，采用栈的向后回溯方法，栈溢出则采用向前回溯的方法<br>原因在于栈溢出发生崩溃是在函数返回之后，而堆溢出则是发生在函数返回之前  </p>
@@ -316,7 +316,7 @@
         <p><span>本文标题:</span><a href="/2016/10/24/Simple-Core-Dump-analyser/">Simple Core Dump analyser</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
         <p><span>发布时间:</span>2016-10-24, 17:08:38</p>
-        <p><span>最后更新:</span>2017-05-04, 22:29:42</p>
+        <p><span>最后更新:</span>2017-05-04, 23:34:49</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/24/Simple-Core-Dump-analyser/" title="Simple Core Dump analyser">http://yoursite.com/2016/10/24/Simple-Core-Dump-analyser/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/24/Simple-Core-Dump-analyser/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
