@@ -15,22 +15,22 @@
 
 
 
-<meta name="description" content="程序&amp;amp;&amp;amp;漏洞 link: pwn300  程序很简单，漏洞也很明显   粗暴的栈溢出，但是程序运行需要两个比较特殊的库libgetshell显然是出题人自己写的，那么libio是个什么东西?果断google之，找了各种有libio的库装了试试了装都没什么用，后来队友告诉我只要把libc改成libio就行了。。。开头想直接远程leak函数地址找libc，但是libcdb.com和li">
+<meta name="description" content="粗暴的栈溢出">
 <meta name="keywords" content="ctf,pwn,writeup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LCTF2016 PWN300">
 <meta property="og:url" content="http://yoursite.com/2016/10/14/LCTF2016-PWN300/index.html">
 <meta property="og:site_name" content="DazzleP&#39;s Blog">
-<meta property="og:description" content="程序&amp;amp;&amp;amp;漏洞 link: pwn300  程序很简单，漏洞也很明显   粗暴的栈溢出，但是程序运行需要两个比较特殊的库libgetshell显然是出题人自己写的，那么libio是个什么东西?果断google之，找了各种有libio的库装了试试了装都没什么用，后来队友告诉我只要把libc改成libio就行了。。。开头想直接远程leak函数地址找libc，但是libcdb.com和li">
+<meta property="og:description" content="粗暴的栈溢出">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN300/LCTF2016-PWN300/LCTF2016_PWN300_VUL.png">
 <meta property="og:image" content="http://yoursite.com/LCTF2016-PWN300/LCTF2016_PWN300_ENV.png">
 <meta property="og:image" content="http://yoursite.com/LCTF2016-PWN300/danm.png">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN300/LCTF2016-PWN300/LCTF2016_PWN300_GADGET.png">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN300/LCTF2016-PWN300/su.png">
-<meta property="og:updated_time" content="2017-05-04T15:34:11.247Z">
+<meta property="og:updated_time" content="2017-05-04T15:41:36.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LCTF2016 PWN300">
-<meta name="twitter:description" content="程序&amp;amp;&amp;amp;漏洞 link: pwn300  程序很简单，漏洞也很明显   粗暴的栈溢出，但是程序运行需要两个比较特殊的库libgetshell显然是出题人自己写的，那么libio是个什么东西?果断google之，找了各种有libio的库装了试试了装都没什么用，后来队友告诉我只要把libc改成libio就行了。。。开头想直接远程leak函数地址找libc，但是libcdb.com和li">
+<meta name="twitter:description" content="粗暴的栈溢出">
 <meta name="twitter:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN300/LCTF2016-PWN300/LCTF2016_PWN300_VUL.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -327,7 +327,7 @@
         <p><span>本文标题:</span><a href="/2016/10/14/LCTF2016-PWN300/">LCTF2016 PWN300</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
         <p><span>发布时间:</span>2016-10-14, 01:22:50</p>
-        <p><span>最后更新:</span>2017-05-04, 23:34:11</p>
+        <p><span>最后更新:</span>2017-05-04, 23:41:36</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/14/LCTF2016-PWN300/" title="LCTF2016 PWN300">http://yoursite.com/2016/10/14/LCTF2016-PWN300/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/14/LCTF2016-PWN300/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
