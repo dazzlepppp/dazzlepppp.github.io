@@ -15,20 +15,20 @@
 
 
 
-<meta name="description" content="程序 link: pwn400    pwn400是一个有RSA加密解密功能的程序，存在如下两个结构体   其中Cipher结构体中成员KeyPair是一个指向KeyPair结构体的指针   漏洞程序在保存Encrypt后的结果时没有添加’\0’截断，填满ciphertext就可以在输出时获取KeyPair的值从而得到堆基址程序在执行decrypt功能后会将对应的Cipher堆块free但是没有将">
+<meta name="description" content="粗暴的栈溢出">
 <meta name="keywords" content="ctf,pwn,writeup,heap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LCTF2016 PWN400">
 <meta property="og:url" content="http://yoursite.com/2016/10/14/LCTF2016-PWN400/index.html">
 <meta property="og:site_name" content="DazzleP&#39;s Blog">
-<meta property="og:description" content="程序 link: pwn400    pwn400是一个有RSA加密解密功能的程序，存在如下两个结构体   其中Cipher结构体中成员KeyPair是一个指向KeyPair结构体的指针   漏洞程序在保存Encrypt后的结果时没有添加’\0’截断，填满ciphertext就可以在输出时获取KeyPair的值从而得到堆基址程序在执行decrypt功能后会将对应的Cipher堆块free但是没有将">
+<meta property="og:description" content="粗暴的栈溢出">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN400/LCTF2016-PWN400/LCTF2016_PWN400_STRUCT.png">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN400/LCTF2016-PWN400/LCTF2016_pWN400_VUL1.png">
 <meta property="og:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN400/LCTF2016-PWN400/LCTF2016_PWN400_VUL2.png">
-<meta property="og:updated_time" content="2017-05-04T15:34:25.502Z">
+<meta property="og:updated_time" content="2017-05-04T15:39:32.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LCTF2016 PWN400">
-<meta name="twitter:description" content="程序 link: pwn400    pwn400是一个有RSA加密解密功能的程序，存在如下两个结构体   其中Cipher结构体中成员KeyPair是一个指向KeyPair结构体的指针   漏洞程序在保存Encrypt后的结果时没有添加’\0’截断，填满ciphertext就可以在输出时获取KeyPair的值从而得到堆基址程序在执行decrypt功能后会将对应的Cipher堆块free但是没有将">
+<meta name="twitter:description" content="粗暴的栈溢出">
 <meta name="twitter:image" content="http://yoursite.com/2016/10/14/LCTF2016-PWN400/LCTF2016-PWN400/LCTF2016_PWN400_STRUCT.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -323,7 +323,7 @@
         <p><span>本文标题:</span><a href="/2016/10/14/LCTF2016-PWN400/">LCTF2016 PWN400</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
         <p><span>发布时间:</span>2016-10-14, 02:28:16</p>
-        <p><span>最后更新:</span>2017-05-04, 23:34:25</p>
+        <p><span>最后更新:</span>2017-05-04, 23:39:32</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/10/14/LCTF2016-PWN400/" title="LCTF2016 PWN400">http://yoursite.com/2016/10/14/LCTF2016-PWN400/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/10/14/LCTF2016-PWN400/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
