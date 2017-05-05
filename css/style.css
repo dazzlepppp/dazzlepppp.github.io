@@ -1492,47 +1492,49 @@ color
   border-radius: 50%;
   background: #d3d3d3;
 }
-.article-entry h1 {
-  margin-top: 30px;
-}
-.article-entry h2 {
-  margin: 0.5em auto;
-  color: #66be66;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  font-size: 1.5rem;
-}
-.article-entry h2:hover {
-  color: #88acdb;
-}
-.article-entry h2::before,
-.article-entry h2::after {
-  content: " —— ";
-  font-family: Arial;
-}
-.article-entry h3 {
-  margin: 0.5em auto;
-  color: #438aac;
-  background: rgba(243,248,253,0.6);
-  border: 1px solid #d2e8fa;
-  padding: 0.2em 0.6em;
-  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-}
-.article-entry h3:hover a {
-  text-decoration: underline;
-}
-.article-entry h3::after {
-  content: " >";
-}
+.article-entry h1,
+.article-entry h2,
+.article-entry h3,
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  margin-top: 20px;
-  color: #574c4c;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.article-entry h1,
+.article-entry h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+}
+.article-entry h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+.article-entry h2 {
+  font-size: 1.75rem;
+  line-height: 1.225;
+}
+.article-entry h3 {
+  font-size: 1.5rem;
+  line-height: 1.43;
+}
+.article-entry h4 {
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.article-entry h1 {
+  margin: 0.67em 0;
+}
+.article-entry h5,
+.article-entry h6 {
+  font-size: 1rem;
+}
+.article-entry h6 {
+  color: #777;
 }
 .article-entry figure table {
   border: none;
@@ -2095,8 +2097,8 @@ aside.comment-bar:active {
 .archives-wrap .archives {
   background: transparent;
 }
-.article-entry pre,
-.article-entry .highlight {
+pre,
+.highlight {
   background: rgba(249,249,249,0.5);
   margin: auto;
   padding: 0.35em 1.5em;
@@ -2107,8 +2109,8 @@ aside.comment-bar:active {
   color: #4d4d4c;
   line-height: 1.3rem;
 }
-.article-entry .highlight .gutter pre,
-.article-entry .gist .gist-file .gist-data .line-numbers {
+.highlight .gutter pre,
+.gist .gist-file .gist-data .line-numbers {
   color: #d3d3d3;
   font-size: 0.85rem;
 }
@@ -2117,7 +2119,11 @@ aside.comment-bar:active {
   font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco, monospace, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei";
   font-size: 1em;
 }
-.article-entry pre code {
+.line:after {
+  content: '';
+  display: inline-block;
+}
+pre code {
   text-shadow: none;
   padding: 0;
   background: none;
@@ -2125,7 +2131,7 @@ aside.comment-bar:active {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.article-entry .highlight {
+.highlight {
   border-radius: 2px;
   max-height: 50em;
   margin-top: 0.5em;
@@ -2134,45 +2140,45 @@ aside.comment-bar:active {
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.05);
   box-shadow: 1px 1px 1px rgba(0,0,0,0.05);
 }
-.article-entry .highlight pre {
+.highlight pre {
   background: none;
   border: none;
   margin: 0;
   padding: 0;
 }
-.article-entry .highlight table {
+.highlight table {
   margin: 0;
   width: auto;
 }
-.article-entry .highlight td {
+.highlight td {
   border: none;
   padding: 0;
 }
-.article-entry .highlight figcaption {
+.highlight figcaption {
   font-size: 0.85em;
   color: #8e908c;
   line-height: 1em;
   margin-bottom: 1em;
 }
-.article-entry .highlight figcaption:before,
-.article-entry .highlight figcaption:after {
+.highlight figcaption:before,
+.highlight figcaption:after {
   content: "";
   display: table;
 }
-.article-entry .highlight figcaption:after {
+.highlight figcaption:after {
   clear: both;
 }
-.article-entry .highlight figcaption a {
+.highlight figcaption a {
   float: right;
 }
-.article-entry .highlight .gutter pre {
+.highlight .gutter pre {
   text-align: right;
   padding-right: 1em;
 }
-.article-entry .highlight .line {
+.highlight .line {
   line-height: 1.3rem;
 }
-.article-entry .gist {
+.gist {
   margin: 0 -20px;
   border-style: solid;
   border-color: #ddd;
@@ -2180,29 +2186,29 @@ aside.comment-bar:active {
   background: rgba(249,249,249,0.5);
   padding: 15px 20px 15px 0;
 }
-.article-entry .gist .gist-file {
+.gist .gist-file {
   border: none;
   font-family: Menlo, Consolas, "Source Code Pro", Inconsolata, Monaco monospace;
   margin: 0;
 }
-.article-entry .gist .gist-file .gist-data {
+.gist .gist-file .gist-data {
   background: none;
   border: none;
 }
-.article-entry .gist .gist-file .gist-data .line-numbers {
+.gist .gist-file .gist-data .line-numbers {
   background: none;
   border: none;
   padding: 0 20px 0 0;
 }
-.article-entry .gist .gist-file .gist-data .line-data {
+.gist .gist-file .gist-data .line-data {
   padding: 0 !important;
 }
-.article-entry .gist .gist-file .highlight {
+.gist .gist-file .highlight {
   margin: 0;
   padding: 0;
   border: none;
 }
-.article-entry .gist .gist-file .gist-meta {
+.gist .gist-file .gist-meta {
   background: rgba(249,249,249,0.5);
   color: #8e908c;
   font: 0.85em "Lucida Grande", Verdana, "Helvetica Neue", Arial;
@@ -2211,11 +2217,11 @@ aside.comment-bar:active {
   margin-top: 1em;
   margin-left: 20px;
 }
-.article-entry .gist .gist-file .gist-meta a {
+.gist .gist-file .gist-meta a {
   color: #258fb8;
   font-weight: normal;
 }
-.article-entry .gist .gist-file .gist-meta a:hover {
+.gist .gist-file .gist-meta a:hover {
   text-decoration: underline;
 }
 .article-entry code {
