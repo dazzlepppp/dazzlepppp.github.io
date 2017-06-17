@@ -1,273 +1,509 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-
-    <!-- Title -->
     
-    <title>Producing Overlapping Chunks - DazzleP&#39;s Blog</title>
+
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--Description-->
     
-        <meta name="description" content="一些小技巧">
     
-
-    <!--Author-->
     
-        <meta name="author" content="DazzleP">
+    <title>Producing Overlapping Chunks | DazzleP&#39;s Blog | A simple record place</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-
-    <!--Favicon-->
+    <meta name="theme-color" content="#3F51B5">
     
-      <link rel="icon" href="images/favicon.ico">
     
-
-    <!--Open Graph Title-->
+    <meta name="keywords" content="heap">
+    <meta name="description" content="一些小技巧">
+<meta name="keywords" content="heap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Producing Overlapping Chunks">
+<meta property="og:url" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/index.html">
+<meta property="og:site_name" content="DazzleP&#39;s Blog">
+<meta property="og:description" content="一些小技巧">
+<meta property="og:updated_time" content="2017-05-04T15:39:10.752Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Producing Overlapping Chunks">
+<meta name="twitter:description" content="一些小技巧">
     
-        <meta property="og:title" content="Producing Overlapping Chunks"/>
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="DazzleP&#39;s Blog"/>
-
-    <!--Page Cover-->
-    
-        <meta property="og:image" content="undefined"/>
-    
-
-
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/sass/main.css">
-
-    <!--[if lt IE 8]>
-        <script src="/js/ie/html5shiv.js"></script>
-    <![endif]-->
-
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" href="/sass/ie8.css">
-    <![endif]-->
-
-
-    <!-- Google Analytics -->
-    
-
-
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 </head>
 
+<body>
+    <div id="loading" class="active"></div>
 
-<body id="top">
-
-    <!-- Header -->
-    <header id="header">
-  <div class="inner">
-    <a href="/" class="image avatar"><img src="https://www.gravatar.com/avatar/e6cfae2d726e15821ea3c4f0848d5451" alt="" /></a>    <h1><strong>This is Strata</strong>, a free, fully responsive site<br />template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">DazzleP</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
   </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Producing Overlapping Chunks</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Producing Overlapping Chunks</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-15T08:35:51.000Z" itemprop="datePublished" class="page-time">
+  2016-10-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
 
-    <!-- Main -->
-		<div id="main">
-
-      <!-- Main Content -->
-      <!-- One -->
-<section id="one">
-  <div class="meta">
-  
-      <span class="date">
-          2016-10-15
-      </span>
-  
-
-  
-
-  
-
-
-</div>
-
-
-
+<div class="container body-wrap">
     
-      <h1 itemprop="name">
-        Producing Overlapping Chunks
-      </h1>
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#linux下堆的结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">linux下堆的结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Extending-Free-Chunks"><span class="post-toc-number">2.</span> <span class="post-toc-text">Extending Free Chunks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Extending-Allocated-Chunks"><span class="post-toc-number">3.</span> <span class="post-toc-text">Extending Allocated Chunks</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Shrinking-Free-Chunks"><span class="post-toc-number">4.</span> <span class="post-toc-text">Shrinking Free Chunks</span></a></li></ol>
+        </nav>
+    </aside>
     
-  
+<article id="post-Producing-Overlapping-Chunks"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Producing Overlapping Chunks</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016-10-15 16:35:51" datetime="2016-10-15T08:35:51.000Z"  itemprop="datePublished">2016-10-15</time>
+
+            
 
 
-
-    <div class="image main"><img src="http://placehold.it/1300x500" alt="" /></div>
-
-
-<!-- Gallery -->
-
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
 
-<!-- Content -->
-<blockquote>
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
 <p>source: <a href="http://www.contextis.com/documents/120/Glibc_Adventures-The_Forgotten_Chunks.pdf" target="_blank" rel="external">Glibc_Adventures-The_Forgotten_Chunks</a></p>
 </blockquote>
 <h2 id="linux下堆的结构"><a href="#linux下堆的结构" class="headerlink" title="linux下堆的结构"></a>linux下堆的结构</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> </span></div><div class="line">&#123;</div><div class="line">    </div><div class="line">    INTERNAL_SIZE_T prev_size; <span class="comment">/* Size of previous chunk (if free). */</span></div><div class="line">    INTERNAL_SIZE_T size; <span class="comment">/* Size in bytes, including overhead. */</span></div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd</span>;</span> <span class="comment">/* double links -- used only if free. */</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk</span>;</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Only used for large blocks: pointer to next larger size. */</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd_nextsize</span>;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk_nextsize</span>;</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>为了设计简单，硬件访问内存是以机器字长位单位的，所以申请堆块时，<code>malloc</code>函数会调整申请的内存的长度为机器字长的倍数，<br>32位及64位情况下均是8的倍数，这就导致<code>size</code>大小最低3个bit全部为0，<br>本着物尽其用的原则，这三个bit作为堆块的标志位，其中最低位作为<code>pre_chunk</code>是否空闲的标志位，<br>也因为这个原则，特定情况下<code>prev_size</code>部分也会成为前一个堆块的内容，<br>这是各种heap base null byte overflow能被利用的原因，</p>
 <h2 id="Extending-Free-Chunks"><a href="#Extending-Free-Chunks" class="headerlink" title="Extending Free Chunks"></a>Extending Free Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> * A, * B, * C;</div><div class="line">    </div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// This is where the overflow happens</span></div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// Free chunk being extended</span></div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Chunk being overlapped</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"C chunk: %p -&gt; %p\n"</span>, C, C + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B); <span class="comment">// Freeing B</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Overflow into A</span></div><div class="line">    * The old chunk B's size becomes 0x181 instead of 0x101</div><div class="line">    */</div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x81</span>;</div><div class="line">    </div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Allocation of old B size + C size</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"New B chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="Producing-Overlapping-Chunks/ExtendingFreeChunk.png" alt="">  </p>
+{% image Producing-Overlapping-Chunks/ExtendingFreeChunk.png '' '' %}  
 <p>输出如下:</p>
 <pre><code>$ ./extend_free_overlap
 C chunk: 0x2036210 -&gt; 0x2036288
 New B chunk: 0x2036110 -&gt; 0x2036288
 </code></pre><p><code>malloc</code>函数从<code>freelist</code>中搜索大小符合要求的堆块，但是只检查了该堆块的<code>size</code>部分，没有检查<code>next_chunk</code>的<code>prev_size</code>  </p>
 <h2 id="Extending-Allocated-Chunks"><a href="#Extending-Allocated-Chunks" class="headerlink" title="Extending Allocated Chunks"></a>Extending Allocated Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> * A, * B, * C;</div><div class="line">    </div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// This is where the overflow happens</span></div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// Free chunk being extended</span></div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Chunk being overlapped</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"C chunk: %p -&gt; %p\n"</span>, C, C + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">    </div><div class="line">    <span class="comment">/* Overflow into A</span></div><div class="line">    * The old chunk B's size becomes 0x181 instead of 0x101</div><div class="line">    */</div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x81</span>;</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B); <span class="comment">// Freeing B</span></div><div class="line">    </div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Allocation of old B size + C size</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"New B chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="Producing-Overlapping-Chunks/ExtendingAllocatedChunk.png" alt=""><br>输出:</p>
+{% image Producing-Overlapping-Chunks/ExtendingAllocatedChunk.png '' '' %}  
+<p>输出:</p>
 <pre><code>root@kali:/vagrant/Heap/8_byte_test# ./test
 C chunk: 0xe25210 -&gt; 0xe25288
 New B chunk: 0xe25110 -&gt; 0xe25288
 </code></pre><p>为了防止<code>double free</code>，<code>free</code>函数会检查该堆块的<code>next_chunk</code>的<code>pre_inuse</code>标志位，<br>这个例子中，溢出修改B chunk的<code>size</code>为B，C两个chunk大小之和，<br><code>free</code>函数根据<code>B-&gt;size</code>寻找下一个堆块的<code>pre_inuse</code>标志位，已确保B不是空闲状态，<br>但此时寻找到的是C的next_chunk，C不是空闲态，<code>free</code>函数判定合法，将B+C大小的堆块链入<code>freelist</code>，<br>同样的，<code>free</code>函数也不检查堆块的<code>next_chunk</code>的<code>pre_size</code>  </p>
 <h2 id="Shrinking-Free-Chunks"><a href="#Shrinking-Free-Chunks" class="headerlink" title="Shrinking Free Chunks"></a>Shrinking Free Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> *A, *B, *C;</div><div class="line">    <span class="keyword">char</span> *B1, *B2, *B3;</div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>);</div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x208</span>);</div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B);</div><div class="line">    </div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x00</span>;</div><div class="line">    </div><div class="line">    B1 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</div><div class="line">    B2 = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B1);</div><div class="line">    <span class="built_in">free</span>(C);</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"B2 chunk: %p -&gt; %p\n"</span>, B2, B2 + <span class="number">0x80</span>);</div><div class="line">    </div><div class="line">    B3 = <span class="built_in">malloc</span>(<span class="number">0x180</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"B3 chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x180</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="Producing-Overlapping-Chunks/ShrinkingFreeChunks.png" alt=""><br>程序输出：  </p>
+{% image Producing-Overlapping-Chunks/ShrinkingFreeChunks.png '' '' %}  
+<p>程序输出：  </p>
 <pre><code>root@kali:/vagrant/Heap/8_byte_test# ./test
 B2 chunk: 0x1025220 -&gt; 0x10252a0
 B3 chunk: 0x1025110 -&gt; 0x1025290
 </code></pre><p><code>free(B)</code>后原先的B堆块被链入<code>freelist</code>，再申请一个大小小于B的B1，malloc函数优先从原先的B中切割一块给B1<br>此时会修改C堆块的<code>prev_size</code>，但是因为此前溢出修改了<code>B-&gt;size</code>，根据被修改过的<code>B-&gt;size</code>找到了错误的C堆块头部(B堆块中)，<br>真正的<code>C-&gt;prev_size</code>并没有被修改，在<code>free(C)</code>时,因为<code>C-&gt;PREV_INUSE</code>为0发生向前合并,根据<code>C-&gt;prev_size</code>找到了原先B堆块(现B1堆块)的头部，<br>此时B1堆块空闲，满足向前合并的条件，所以B和C两个堆块被合并然后链入freelist，此时再申请合适大小的堆块，就可以覆盖到B2，产生堆块重叠</p>
 
+        </div>
 
-<!-- Tags -->
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-05-04T15:39:10.752Z" itemprop="dateUpdated">2017-05-04 23:39:10</time>
+</span><br>
 
 
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/10/15/Producing-Overlapping-Chunks/" target="_blank" rel="external">http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.dazzlepppp.cn">
+            <img src="/img/avatar.jpg" alt="DazzleP">
+            DazzleP
+        </a>
+    </footer>
+</blockquote>
 
-<div class="tags">
-    <a href="/tags/heap/" class="button small">heap</a>
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
 
 
-<!-- Comments -->
-<div>
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heap/">heap</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
     
-    <hr />
-    <h3>comment:</h3>
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&source=A poor bin dog from ROIS@FZU" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Producing Overlapping Chunks》 — DazzleP's Blog&url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&via=http://blog.dazzlepppp.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
     </div>
 
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/10/24/Simple-Core-Dump-analyser/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Simple Core Dump analyser</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/10/14/HITCON-CTF-2016-SerectHolder/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">HITCON CTF 2016 SerectHolder</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 
 </div>
 
-</section>
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-      <!-- Three - the contact form is on every page! -->
-        <section id="three">
-          <h2>Get In Touch</h2>
-<p>Us a service like Google forms or formspree to modify this partial in _partials/contact-form.</p>
-<div class="row">
-  <div class="8u 12u$(small)">
-    <form method="post" action="#">
-      <div class="row uniform 50%">
-        <div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-        <div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-        <div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-      </div>
-    </form>
-    <ul class="actions">
-      <li><input type="submit" value="Send Message" /></li>
-    </ul>
-  </div>
-  <div class="4u$ 12u$(small)">
-    <ul class="labeled-icons">
-      <li>
-        <h3 class="icon fa-home"><span class="label">Address</span></h3>
-        1234 Somewhere Rd.<br />
-        Nashville, TN 00000<br />
-        United States
-      </li>
-      <li>
-        <h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
-        000-000-0000
-      </li>
-      <li>
-        <h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
-        <a href="#">hello@untitled.tld</a>
-      </li>
-    </ul>
-  </div>
-</div>
-        </section>
-
-        <!-- Footer -->
-<footer id="footer">
-    <div class="inner">
-
-        <ul class="icons">
+        <p>
             
-                <li><a href="https://twitter.com/?lang=en" class="icon fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
-            
-            
-                <li><a href="https://www.facebook.com/" class="icon fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
-            
-            
-                <li><a href="https://www.instagram.com/" class="icon fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
-            
-            
-                <li><a href="https://dribbble.com/" class="icon fa-dribbble" target="_blank" ><span class="label">Dribbble</span></a></li>
-            
-            
-                <li><a href="https://github.com/klugjo/hexo-theme-phantom/commits?author=klugjo" class="icon fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
-            
-            
-                <li><a href="https://plus.google.com/" class="icon fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
-            
-            
-                <li><a href="https://www.behance.net/" class="icon fa-behance" target="_blank" ><span class="label">Behance</span></a></li>
-            
-            
-                <li><a href="https://500px.com/" class="icon fa-500px" target="_blank" ><span class="label">500px</span></a></li>
-            
-            
-                <li><a href="\#" class="icon fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
-            
-            
-                <li><a href="\#" class="icon  fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
-            
-        </ul>
-
-        <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved</li>
-            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
-            <li>Hexo: <a href="http://livingos.com/" target="_blank">Tim Hyde</a></li>
-        </ul>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>DazzleP &copy; 2015 - 2017</span>
+        </p>
     </div>
 </footer>
 
-        
-    </div>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    <!-- After footer scripts -->
-      <!-- Scripts -->
-  <script src="/js/jquery.min.js"></script>  <script src="/js/jquery.poptrox.min.js"></script>  <script src="/js/skel.min.js"></script>  <script src="/js/util.js"></script>
-  <!--[if lte IE 8]>
-  <script src="/js/ie/respond.min.js"></script>
-  <![endif]-->
 
-  <script src="/js/main.js"></script>
-  <!-- Disqus Comments -->
-  
-  <script type="text/javascript">
-      var disqus_shortname = 'livingos';
 
-      (function(){
-          var dsq = document.createElement('script');
-          dsq.type = 'text/javascript';
-          dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }());
-  </script>
-  
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&source=A poor bin dog from ROIS@FZU" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Producing Overlapping Chunks》 — DazzleP's Blog&url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&via=http://blog.dazzlepppp.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
 
 
 </body>

