@@ -1,194 +1,247 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
-
-<!-- Head tag -->
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-        <meta name="description" content="无线网络课的课题">
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="DazzleP">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="MDK3源码分析"/>
-    
-
-    <!--Open Graph Description-->
-    
-        <meta property="og:description" content="无线网络课的课题" />
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="DazzleP&#39;s Blog"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="article" />
-    
-
-    <!--Page Cover-->
-    
-
-        <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>MDK3源码分析 - DazzleP&#39;s Blog</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
     <![endif]-->
 
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="DazzleP" />
 
-    <!-- Google Analytics -->
-    
 
 
-    <!-- favicon -->
-    
-	
+<meta name="description" content="无线网络课的课题">
+<meta name="keywords" content="homework,code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MDK3源码分析">
+<meta property="og:url" content="http://blog.dazzlepppp.cn/2017/05/31/MDK3源码分析/index.html">
+<meta property="og:site_name" content="DazzleP&#39;s Blog">
+<meta property="og:description" content="无线网络课的课题">
+<meta property="og:updated_time" content="2017-05-31T15:45:00.814Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MDK3源码分析">
+<meta name="twitter:description" content="无线网络课的课题">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="DazzleP&#39;s Blog" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/img/avatar_maki.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>MDK3源码分析 | DazzleP&#39;s Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
 </head>
-
-
 <body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar_maki.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">DazzleP</a></h1>
+        </hgroup>
 
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">DazzleP's Blog</a>
-        </div>
+        
+        <p class="header-subtitle">A simple record place</p>
+        
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                
-                    <li>
-                        <a href="/">
-                            
-                                Home
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives">
-                            
-                                Archives
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags">
-                            
-                                Tags
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://github.com/dazzlepppp">
-                            
-                                <i class="fa fa-github fa-stack-2x"></i>
-                            
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+        
 
-    <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in your post front-matter: cover -->
 
-<header class="intro-header" style="background-image: url('/background/bg-1.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="post-heading">
-                    <h1>MDK3源码分析</h1>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/dazzlepppp@outlook.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/2722036022" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/dazzlepppp" title="GitHub"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
                     
-                    <span class="meta">
-                        <!-- Date and Author -->
-                        
-                        
-                            2017-05-31
-                        
-                    </span>
-                </div>
+                      <a class="main-nav-link switch-friends-link" href="http://iamjimyes.github.io/">p5yGho</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://blog.imspace.cn/">space</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://blog.wdeil.xyz/">wdeil</a>
+                    
+                    </div>
+                </section>
+                
+
+                
             </div>
         </div>
+    </header>                
+</div>
     </div>
-</header>
-
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-
-            <!-- Tags and categories -->
-           
-                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
-                    
-                        
-
-
-<a href="/tags/homework/">#homework</a> <a href="/tags/code/">#code</a>
-
-
-                    
-                </div>
-                <div class="col-lg-4 col-md-5 post-categories">
-                    
-                </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">DazzleP</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar_maki.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">DazzleP</a></h1>
+            </hgroup>
             
-
-            <!-- Gallery -->
+            <p class="header-subtitle">A simple record place</p>
             
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/dazzlepppp@outlook.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/2722036022" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/dazzlepppp" title="GitHub"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-MDK3源码分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/31/MDK3源码分析/" class="article-date">
+      <time datetime="2017-05-31T15:44:08.000Z" itemprop="datePublished">2017-05-31</time>
+</a>
 
-            <!-- Post Main Content -->
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>无线网络安全课的选题，我们组选得是无线网络恶意分析，然后我们最后选择的课题是MDK3工具的利用和分析，我的部分是分析MDK3的源码<br>在这里我要吐槽一下这个代码，缩进没有层次上的区分，再加上处理参数时用了大量的if-else结构和switch case，整个代码可读性基本就是一个差字,<br>而且处理参数为何不用getopt啊。。。</p>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MDK3源码分析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code/">code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homework/">homework</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>无线网络安全课的选题，我们组选得是无线网络恶意分析，然后我们最后选择的课题是MDK3工具的利用和分析，我的部分是分析MDK3的源码<br>在这里我要吐槽一下这个代码，缩进没有层次上的区分，再加上处理参数时用了大量的if-else结构和switch case，整个代码可读性基本就是一个差字,<br>而且处理参数为何不用getopt啊。。。</p>
 <h2 id="main-函数分析"><a href="#main-函数分析" class="headerlink" title="main()函数分析"></a>main()函数分析</h2><p>大概截取一部分<code>main()</code>函数代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (argv[<span class="number">2</span>][<span class="number">0</span>]) &#123;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'b'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_beac);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'a'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_auth);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'p'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_prob);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'d'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_deau);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'m'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_mich);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'x'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_eapo);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'w'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_wids);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'f'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_macb);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">case</span> <span class="string">'g'</span>:</div><div class="line">		<span class="built_in">printf</span>(use_wpad);</div><div class="line">		<span class="keyword">break</span>;</div><div class="line">	    <span class="keyword">default</span>:</div><div class="line">		<span class="built_in">printf</span>(use_head);</div><div class="line">        &#125; </div><div class="line"></div><div class="line"><span class="comment">/* open the replay interface */</span></div><div class="line">    _wi_out = wi_open(argv[<span class="number">1</span>]);</div><div class="line">    <span class="keyword">if</span> (!_wi_out)</div><div class="line">    	<span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    dev.fd_out = wi_fd(_wi_out);</div><div class="line"></div><div class="line">    <span class="comment">/* open the packet source */</span></div><div class="line">    _wi_in = _wi_out;</div><div class="line">    dev.fd_in = dev.fd_out;</div><div class="line"></div><div class="line">    <span class="comment">/* XXX */</span></div><div class="line">    dev.arptype_in = dev.arptype_out;</div><div class="line"></div><div class="line">    <span class="comment">/* drop privileges */</span></div><div class="line"></div><div class="line">    setuid( getuid() );</div><div class="line"></div><div class="line">    <span class="keyword">int</span> retval = mdk_parser(argc, argv);</div><div class="line"></div><div class="line">    <span class="keyword">return</span>( retval );</div></pre></td></tr></table></figure></p>
 <p><code>main()</code>函数初步的解析了程序运行的参数，参数不对的话打出对应的help，然后传给<code>mdk_parser()</code>进行进一步处理<br>同样的截取一部分代码<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">switch</span> (argv[<span class="number">2</span>][<span class="number">0</span>])</div><div class="line">    &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'b'</span>:</div><div class="line">	mode = <span class="string">'b'</span>;</div><div class="line">	usespeed = <span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span> (t=<span class="number">3</span>; t&lt;argc; t++)</div><div class="line">	&#123;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-n"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) ssid = argv[t+<span class="number">1</span>];</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-f"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (ssid_file_name == <span class="literal">NULL</span>) ssid_file_name = argv[t+<span class="number">1</span>];</div><div class="line">		<span class="keyword">else</span> &#123; <span class="built_in">printf</span>(use_beac); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-v"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) &#123;</div><div class="line">		<span class="keyword">if</span> (ssid_file_name == <span class="literal">NULL</span>) &#123; ssid_file_name = argv[t+<span class="number">1</span>]; adv=<span class="number">1</span>; &#125;</div><div class="line">		<span class="keyword">else</span> &#123; <span class="built_in">printf</span>(use_beac); <span class="keyword">return</span> <span class="number">-1</span>; &#125;</div><div class="line">	    &#125;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-s"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) pps = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-c"</span>)) <span class="keyword">if</span> (argc &gt; t+<span class="number">1</span>) fchan = strtol(argv[t+<span class="number">1</span>], (<span class="keyword">char</span> **) <span class="literal">NULL</span>, <span class="number">10</span>);</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-h"</span>)) mode = <span class="string">'B'</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-m"</span>)) random_mac = <span class="number">0</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-w"</span>)) wep = <span class="number">1</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-g"</span>)) gmode = <span class="number">1</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-t"</span>)) wep = <span class="number">2</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-a"</span>)) wep = <span class="number">3</span>;</div><div class="line">	    <span class="keyword">if</span> (! <span class="built_in">strcmp</span>(argv[t], <span class="string">"-d"</span>)) adhoc = <span class="number">1</span>;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <p>getopt到底有啥不好的。。。非得这么麻烦<br>这里mode为b时使用的是beacon模式，用起来就是同时产生大量的fake ap，干扰用户的正常通信<br>这个工具还有强制认证解除模式，验证请求DOS攻击，探测AP爆破ESSID等，之后再讲</p>
@@ -218,85 +271,230 @@
 <p>这里指代的是默认的case，主要是根据黑白名单过滤掉相应的mac地址，然后再设置数据包内容，其他case大同小异，细节不同而已  </p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>MDK3其实还有其他很多有趣的功能，也有很多值得我们去分析，整个MDK3.c大概4K行，我可能看了大概不到一半，还是有很多东西值得我们去深究的  </p>
 
-
-                
-            </div>
-
-            <!-- Comments -->
-            
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    
-
-
-                </div>
-            
-        </div>
+      
     </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/05/31/MDK3源码分析/">MDK3源码分析</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">DazzleP</a></p>
+        <p><span>发布时间:</span>2017-05-31, 23:44:08</p>
+        <p><span>最后更新:</span>2017-05-31, 23:45:00</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/31/MDK3源码分析/" title="MDK3源码分析">http://blog.dazzlepppp.cn/2017/05/31/MDK3源码分析/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://blog.dazzlepppp.cn/2017/05/31/MDK3源码分析/　　作者: DazzleP" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/06/11/深圳-chuan-五日游/">
+                    深圳(chuan)五日游
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/05/05/BCTF-2017-babyuse/">
+                    BCTF 2017 babyuse
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
 
-    <!-- Footer -->
-    <hr />
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#main-函数分析"><span class="toc-number">2.</span> <span class="toc-text">main()函数分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Beacon模式"><span class="toc-number">3.</span> <span class="toc-text">Beacon模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#验证DOS攻击模式"><span class="toc-number">4.</span> <span class="toc-text">验证DOS攻击模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#探测AP及ESSID爆破"><span class="toc-number">5.</span> <span class="toc-text">探测AP及ESSID爆破</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制断开验证"><span class="toc-number">6.</span> <span class="toc-text">强制断开验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
 
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
-                    
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
-                    
-                        <li>
-                            <a href="https://github.com/dazzlepppp" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
 
-                    
 
-                    
-                        <li>
-                            <a href="mailto:dazzlepppp@outlook.com" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"MDK3源码分析　| DazzleP's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-                    
-                </ul>
-                <p class="copyright text-muted">&copy; 2017 DazzleP<br></p>
-                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
-                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section class="youyan" id="comments">
+    <script>
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = 'http://v2.uyan.cc/code/uyan.js?uid=2132732';
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+    <div id="uyan_frame"></div>
+</section>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/06/11/深圳-chuan-五日游/" title="上一篇: 深圳(chuan)五日游">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/05/05/BCTF-2017-babyuse/" title="下一篇: BCTF 2017 babyuse">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/06/11/深圳-chuan-五日游/">深圳(chuan)五日游</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/31/MDK3源码分析/">MDK3源码分析</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/05/BCTF-2017-babyuse/">BCTF 2017 babyuse</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/24/0ctf-2017-writeup/">0ctf 2017 writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/27/ZCTF-2017-write-up/">ZCTF 2017 write up</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/04/FSOP以及glibc针对其所做的防御措施/">FSOP以及glibc针对其所做的防御措施</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/29/HCTF-2016-writeup/">HCTF-2016-writeup</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/12/HITCON-CTF-2016-ShellingFolder/">HITCON CTF 2016 ShellingFolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/24/Simple-Core-Dump-analyser/">Simple Core Dump analyser</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/15/Producing-Overlapping-Chunks/">Producing Overlapping Chunks</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/HITCON-CTF-2016-SerectHolder/">HITCON CTF 2016 SerectHolder</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN400/">LCTF2016 PWN400</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/14/LCTF2016-PWN300/">LCTF2016 PWN300</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 DazzleP
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
 </footer>
-
-
-    <!-- After footer scripts -->
+    </div>
     
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-<!-- Bootstrap -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 1;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
-
-<!-- Disqus Comments -->
 
 
 
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
 </body>
-
 </html>
