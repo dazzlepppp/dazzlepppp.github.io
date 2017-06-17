@@ -43,7 +43,7 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/)">
+    <div class="brand-wrap" style="background-image:url(/img/avatar_maki.png)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
           <img src="/img/avatar_maki.png">
@@ -512,7 +512,14 @@ main()函数分析大概截取一部分main()函数代码123456...
         程序
 link: ShellingFolder  
 
-漏洞 &amp;&amp; 利用栈上的s只有24个字节，最多可以复制32个字节，刚好覆盖到v3，通过更改v3来达到修改任意地址数据，从而实现任意地址读写File-&gt;Size长度为32位有符号整数，而指针长度为64位，所以要注意到寄存器相加时的符号及数据长度问题另外，程序开启RELRO，不能修改GOT，最后利用方法是在修改一个已存在的...
+漏洞 &amp;&amp; 利用
+                
+                    
+                    
+                
+                
+              
+栈上的s只有24个字节，最多可以复制32个字节，刚好覆盖到v3，通过更改v3来达到修改任意...
     
 
         <a href="/2016/11/12/HITCON-CTF-2016-ShellingFolder/" class="post-more waves-effect waves-button">
@@ -755,23 +762,6 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 
-
-<script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '死鬼去哪里了！';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '(つェ⊂)咦!又好了!';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
-        }
-    });
-})();
-</script>
 
 
 
