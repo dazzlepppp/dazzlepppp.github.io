@@ -27,12 +27,16 @@
 <meta property="og:url" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/index.html">
 <meta property="og:site_name" content="DazzleP&#39;s Blog">
 <meta property="og:description" content="一些小技巧">
+<meta property="og:image" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/Producing-Overlapping-Chunks/ExtendingFreeChunk.png">
+<meta property="og:image" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/Producing-Overlapping-Chunks/ExtendingAllocatedChunk.png">
+<meta property="og:image" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/Producing-Overlapping-Chunks/ShrinkingFreeChunks.png">
 <meta property="og:updated_time" content="2017-05-04T15:39:10.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Producing Overlapping Chunks">
 <meta name="twitter:description" content="一些小技巧">
+<meta name="twitter:image" content="http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/Producing-Overlapping-Chunks/ExtendingFreeChunk.png">
     
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/img/avatar_maki.png">
     <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
     <script>window.lazyScripts=[]</script>
 </head>
@@ -45,14 +49,14 @@
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
     </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+    <div class="brand-wrap" style="background-image:url(/)">
       <div class="brand">
         <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+          <img src="/img/avatar_maki.png">
         </a>
         <hgroup class="introduce">
           <h5 class="nickname">DazzleP</h5>
-          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+          <a href="mailto:dazzlepppp@outlook.com" title="dazzlepppp@outlook.com" class="mail">dazzlepppp@outlook.com</a>
         </hgroup>
       </div>
     </div>
@@ -81,30 +85,16 @@
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/yscoder" target="_blank" >
+              <a href="https://github.com/dazzlepppp" target="_blank" >
                 <i class="icon icon-lg icon-github"></i>
                 Github
               </a>
             </li>
         
             <li class="waves-block waves-effect">
-              <a href="http://www.weibo.com/ysweb" target="_blank" >
+              <a href="http://www.weibo.com/2722036022" target="_blank" >
                 <i class="icon icon-lg icon-weibo"></i>
                 Weibo
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/custom"  >
-                <i class="icon icon-lg icon-link"></i>
-                测试
               </a>
             </li>
         
@@ -195,22 +185,20 @@
 <h2 id="linux下堆的结构"><a href="#linux下堆的结构" class="headerlink" title="linux下堆的结构"></a>linux下堆的结构</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span> </span></div><div class="line">&#123;</div><div class="line">    </div><div class="line">    INTERNAL_SIZE_T prev_size; <span class="comment">/* Size of previous chunk (if free). */</span></div><div class="line">    INTERNAL_SIZE_T size; <span class="comment">/* Size in bytes, including overhead. */</span></div><div class="line">    </div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd</span>;</span> <span class="comment">/* double links -- used only if free. */</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk</span>;</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Only used for large blocks: pointer to next larger size. */</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">fd_nextsize</span>;</span></div><div class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">malloc_chunk</span>* <span class="title">bk_nextsize</span>;</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>为了设计简单，硬件访问内存是以机器字长位单位的，所以申请堆块时，<code>malloc</code>函数会调整申请的内存的长度为机器字长的倍数，<br>32位及64位情况下均是8的倍数，这就导致<code>size</code>大小最低3个bit全部为0，<br>本着物尽其用的原则，这三个bit作为堆块的标志位，其中最低位作为<code>pre_chunk</code>是否空闲的标志位，<br>也因为这个原则，特定情况下<code>prev_size</code>部分也会成为前一个堆块的内容，<br>这是各种heap base null byte overflow能被利用的原因，</p>
 <h2 id="Extending-Free-Chunks"><a href="#Extending-Free-Chunks" class="headerlink" title="Extending Free Chunks"></a>Extending Free Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> * A, * B, * C;</div><div class="line">    </div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// This is where the overflow happens</span></div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// Free chunk being extended</span></div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Chunk being overlapped</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"C chunk: %p -&gt; %p\n"</span>, C, C + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B); <span class="comment">// Freeing B</span></div><div class="line">    </div><div class="line">    <span class="comment">/* Overflow into A</span></div><div class="line">    * The old chunk B's size becomes 0x181 instead of 0x101</div><div class="line">    */</div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x81</span>;</div><div class="line">    </div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Allocation of old B size + C size</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"New B chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-{% image Producing-Overlapping-Chunks/ExtendingFreeChunk.png '' '' %}  
+<p><img src="Producing-Overlapping-Chunks/ExtendingFreeChunk.png" alt="">  </p>
 <p>输出如下:</p>
 <pre><code>$ ./extend_free_overlap
 C chunk: 0x2036210 -&gt; 0x2036288
 New B chunk: 0x2036110 -&gt; 0x2036288
 </code></pre><p><code>malloc</code>函数从<code>freelist</code>中搜索大小符合要求的堆块，但是只检查了该堆块的<code>size</code>部分，没有检查<code>next_chunk</code>的<code>prev_size</code>  </p>
 <h2 id="Extending-Allocated-Chunks"><a href="#Extending-Allocated-Chunks" class="headerlink" title="Extending Allocated Chunks"></a>Extending Allocated Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> * A, * B, * C;</div><div class="line">    </div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// This is where the overflow happens</span></div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>); <span class="comment">// Free chunk being extended</span></div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Chunk being overlapped</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"C chunk: %p -&gt; %p\n"</span>, C, C + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">    </div><div class="line">    <span class="comment">/* Overflow into A</span></div><div class="line">    * The old chunk B's size becomes 0x181 instead of 0x101</div><div class="line">    */</div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x81</span>;</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B); <span class="comment">// Freeing B</span></div><div class="line">    </div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>); <span class="comment">// Allocation of old B size + C size</span></div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"New B chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x100</span> + <span class="number">0x80</span> - <span class="number">8</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-{% image Producing-Overlapping-Chunks/ExtendingAllocatedChunk.png '' '' %}  
-<p>输出:</p>
+<p><img src="Producing-Overlapping-Chunks/ExtendingAllocatedChunk.png" alt=""><br>输出:</p>
 <pre><code>root@kali:/vagrant/Heap/8_byte_test# ./test
 C chunk: 0xe25210 -&gt; 0xe25288
 New B chunk: 0xe25110 -&gt; 0xe25288
 </code></pre><p>为了防止<code>double free</code>，<code>free</code>函数会检查该堆块的<code>next_chunk</code>的<code>pre_inuse</code>标志位，<br>这个例子中，溢出修改B chunk的<code>size</code>为B，C两个chunk大小之和，<br><code>free</code>函数根据<code>B-&gt;size</code>寻找下一个堆块的<code>pre_inuse</code>标志位，已确保B不是空闲状态，<br>但此时寻找到的是C的next_chunk，C不是空闲态，<code>free</code>函数判定合法，将B+C大小的堆块链入<code>freelist</code>，<br>同样的，<code>free</code>函数也不检查堆块的<code>next_chunk</code>的<code>pre_size</code>  </p>
 <h2 id="Shrinking-Free-Chunks"><a href="#Shrinking-Free-Chunks" class="headerlink" title="Shrinking Free Chunks"></a>Shrinking Free Chunks</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">char</span> *A, *B, *C;</div><div class="line">    <span class="keyword">char</span> *B1, *B2, *B3;</div><div class="line">    A = <span class="built_in">malloc</span>(<span class="number">0x100</span> - <span class="number">8</span>);</div><div class="line">    B = <span class="built_in">malloc</span>(<span class="number">0x208</span>);</div><div class="line">    C = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B);</div><div class="line">    </div><div class="line">    A[<span class="number">0x100</span> - <span class="number">8</span>] = <span class="number">0x00</span>;</div><div class="line">    </div><div class="line">    B1 = <span class="built_in">malloc</span>(<span class="number">0x100</span>);</div><div class="line">    B2 = <span class="built_in">malloc</span>(<span class="number">0x80</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">free</span>(B1);</div><div class="line">    <span class="built_in">free</span>(C);</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"B2 chunk: %p -&gt; %p\n"</span>, B2, B2 + <span class="number">0x80</span>);</div><div class="line">    </div><div class="line">    B3 = <span class="built_in">malloc</span>(<span class="number">0x180</span>);</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"B3 chunk: %p -&gt; %p\n"</span>, B, B + <span class="number">0x180</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-{% image Producing-Overlapping-Chunks/ShrinkingFreeChunks.png '' '' %}  
-<p>程序输出：  </p>
+<p><img src="Producing-Overlapping-Chunks/ShrinkingFreeChunks.png" alt=""><br>程序输出：  </p>
 <pre><code>root@kali:/vagrant/Heap/8_byte_test# ./test
 B2 chunk: 0x1025220 -&gt; 0x10252a0
 B3 chunk: 0x1025110 -&gt; 0x1025290
@@ -227,22 +215,16 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 
 
         
-        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2016/10/15/Producing-Overlapping-Chunks/" target="_blank" rel="external">http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/</a>
-        
     </div>
     <footer>
         <a href="http://blog.dazzlepppp.cn">
-            <img src="/img/avatar.jpg" alt="DazzleP">
+            <img src="/img/avatar_maki.png" alt="DazzleP">
             DazzleP
         </a>
     </footer>
 </blockquote>
 
         
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
 
 
         <div class="post-footer">
@@ -257,7 +239,7 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar_maki.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -332,6 +314,13 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 
 
 
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=2132732"></script>
+    <!-- UY END -->
+</section>
+
 
 
 
@@ -342,30 +331,6 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 
 
 </article>
-
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        谢谢大爷~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
-        
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
-        
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
 
 
 
@@ -392,7 +357,7 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>DazzleP &copy; 2015 - 2017</span>
+            <span>DazzleP &copy; 2016 - 2017</span>
         </p>
     </div>
 </footer>
@@ -406,7 +371,7 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.dazzlepppp.cn/2016/10/15/Producing-Overlapping-Chunks/&title=《Producing Overlapping Chunks》 — DazzleP's Blog&pic=http://blog.dazzlepppp.cn/img/avatar_maki.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -450,7 +415,7 @@ B3 chunk: 0x1025110 -&gt; 0x1025290
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
 
 
 
